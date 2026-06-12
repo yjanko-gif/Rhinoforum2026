@@ -134,6 +134,10 @@ body.favmode header .days label{background:rgba(255,255,255,.14)!important;color
 #ty-9:checked~main .card:not([data-ty="Table Ronde"]){display:none}
 #ty-9:checked~.fbar label[for=ty-9]{background:var(--accent);color:#fff;border-color:var(--accent)}
 #ty-all:checked~.fbar label[for=ty-all]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#updbar{position:fixed;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom) + 16px);z-index:200;background:linear-gradient(135deg,#4f0f26,#7b1e3b);color:#fff;border:1px solid var(--gold);border-radius:13px;padding:12px 15px;font-size:14px;font-weight:500;box-shadow:0 6px 20px rgba(40,5,18,.35);display:flex;align-items:center;justify-content:space-between;gap:10px;animation:updin .35s ease;}
+#updbar.hide{opacity:0;transition:opacity .5s;}
+#updbar button{border:none;border-radius:9px;background:var(--gold);color:#3d0a1d;font-weight:700;font-size:13px;padding:8px 14px;cursor:pointer;flex-shrink:0;}
+@keyframes updin{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 </style>
 </head>
 <body>
@@ -960,6 +964,31 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 }catch(err){}
 })();
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
+<script>
+(function(){
+var APP_VERSION="2026.06.12-1";
+function toast(msg,withBtn){
+  var t=document.createElement("div");t.id="updbar";
+  t.innerHTML=msg+(withBtn?' <button id="updbtn">Recharger</button>':'');
+  document.body.appendChild(t);
+  if(withBtn)document.getElementById("updbtn").addEventListener("click",function(){location.reload();});
+  else setTimeout(function(){t.classList.add("hide");setTimeout(function(){t.remove();},600);},4000);
+}
+try{
+  var prev=localStorage.getItem("rf26ver");
+  if(prev&&prev!==APP_VERSION)toast("✓ Application mise à jour — programme actualisé");
+  localStorage.setItem("rf26ver",APP_VERSION);
+}catch(e){}
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){
+    var hadController=!!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+    navigator.serviceWorker.addEventListener("controllerchange",function(){
+      if(hadController)toast("Nouvelle version disponible",true);
+    });
+  });
+}
+})();
+</script>
 </body>
 </html>
