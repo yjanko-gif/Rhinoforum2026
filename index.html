@@ -921,7 +921,15 @@ cards.forEach(function(c){
   var b=document.createElement("button");
   b.type="button";b.className="calbtn";b.textContent="📅 Ajouter au calendrier";
   b.setAttribute("aria-label","Ajouter cette session au calendrier avec rappel 15 minutes avant");
-  b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();addCal(c);});
+  b.addEventListener("click",function(ev){
+    ev.preventDefault();ev.stopPropagation();
+    var ref=c.getAttribute("data-ref");
+    if(ref&&location.protocol.indexOf("http")===0){
+      var base=location.host+location.pathname.replace(/[^\/]*$/,"");
+      location.href="webcal://"+base+"ics/"+ref+".ics";
+    }
+    else{addCal(c);}
+  });
   det.appendChild(b);
 });
 // ----- favoris "Mes sessions" -----
@@ -967,7 +975,7 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 </script>
 <script>
 (function(){
-var APP_VERSION="2026.06.12-2";
+var APP_VERSION="2026.06.12-4";
 function toast(msg,withBtn){
   var t=document.createElement("div");t.id="updbar";
   t.innerHTML=msg+(withBtn?' <button id="updbtn">Recharger</button>':'');
