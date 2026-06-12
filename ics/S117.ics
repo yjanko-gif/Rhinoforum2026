@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S117@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T160000
+DTEND:20260619T163000
+SUMMARY:Place de la respiration nasale dans la croissance faciale : ap
+ plications pratiques
+LOCATION:Amphi C Monbazillac\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S117)\nIntervenan
+ t(s) :\n- Joelle HUTH\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

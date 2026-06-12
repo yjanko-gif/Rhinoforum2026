@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S127@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T100000
+DTEND:20260620T103000
+SUMMARY:La rhinite allergique en pratique : qui peut faire quoi ?
+LOCATION:Amphi C Monbazillac\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Atelier (réf. S127)\nInterven
+ ant(s) :\n- Gaelle RAPIDIE\nRhinoforum 2026 - Bordeaux Palais des Cong
+ res
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

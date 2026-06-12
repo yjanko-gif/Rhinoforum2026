@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S20@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T165000
+DTEND:20260618T172000
+SUMMARY:La chirurgie sur patient éveillé : simple\, efficace et rentab
+ le!
+LOCATION:Salle Pessac-Léognan (F1+F2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Séance Vidéo Chirurgicale (réf.
+  S20)\nIntervenant(s) :\n- Justin MICHEL\n- Thomas RADULESCO\nRhinofor
+ um 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

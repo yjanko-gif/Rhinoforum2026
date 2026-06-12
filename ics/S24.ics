@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S24@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T165000
+DTEND:20260618T172000
+SUMMARY:Les maladies de système en rhinologie : quand y penser et comm
+ ent les prendre en charge ?
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Atelier (réf. S24)\
+ nIntervenant(s) :\n- Emmanuelle MOUCHON\n- Grégory PUGNET\nRhinoforum 
+ 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

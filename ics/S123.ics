@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S123@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T160000
+DTEND:20260619T163000
+SUMMARY:De la lésion à la régénération : dynamique de l'épithélium apr
+ ès chirurgie de la polypose
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Atelier (réf. S123)
+ \nIntervenant(s) :\n- Martin DESROSIERS\nRhinoforum 2026 - Bordeaux Pa
+ lais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

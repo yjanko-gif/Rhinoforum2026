@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S2@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T131500
+DTEND:20260618T134500
+SUMMARY:Comment faire une voie prélacrymale ?
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Séance Vidéo Chirurgicale (réf.
+  S2)\nIntervenant(s) :\n- Ahmed ALHARBI\nRhinoforum 2026 - Bordeaux Pa
+ lais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

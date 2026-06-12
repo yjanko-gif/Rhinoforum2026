@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S161@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T113000
+DTEND:20260620T120000
+SUMMARY:Comment réaliser et interprêter une endoscopie sous sommeil in
+ duit ?
+LOCATION:Amphi C Monbazillac\, Palais des Congres\, Bordeaux
+DESCRIPTION:Sommeil - Séance Vidéo Chirurgicale (réf. S161)\nIntervena
+ nt(s) :\n- Mélodie KERIMIAN\nRhinoforum 2026 - Bordeaux Palais des Con
+ gres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

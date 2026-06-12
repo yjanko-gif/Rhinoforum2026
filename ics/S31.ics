@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S31@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T090000
+DTEND:20260619T095500
+SUMMARY:Cas cliniques avis d'experts sous l'égide de la SOFA
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Cas Cliniques / Avis d'Experts (réf. S31)\nModéra
+ teur(s) :\n- Thomas RADULESCO\nIntervenant(s) :\n- Ludovic DE GABORY\n
+ - Amandine LECHOT\n- Joelle HUTH\n- Thomas RADULESCO\n- Guillaume DE B
+ ONNECAZE\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S107@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T110000
+DTEND:20260620T112500
+SUMMARY:Gestion de l'envahissement orbitaire des tumeurs naso-sinusien
+ nes
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Tumeurs et cancers - Atelier (réf. S107)\nIntervenant(s) :
+ \n- Antoine MOYA PLANA\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

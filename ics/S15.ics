@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S15@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T131500
+DTEND:20260618T142000
+SUMMARY:RETEX ORL-PNEUMO sur les biothérapies
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Cas Cliniques / Avis d'Expert
+ s (réf. S15)\nModérateur(s) :\n- Ludovic DE GABORY\nIntervenant(s) :\n
+ - Laurent GUILLEMINAULT\n- Pierre-Olivier GIRODET\n- Jean-Baptiste LEC
+ ANU\n- Geoffrey MORTUAIRE\nRhinoforum 2026 - Bordeaux Palais des Congr
+ es
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

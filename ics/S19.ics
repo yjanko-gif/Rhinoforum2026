@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S19@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T161500
+DTEND:20260618T164500
+SUMMARY:Rhinoliquorrhée spontanée : du diagnostic à la prise en charge
+  globale
+LOCATION:Salle Pessac-Léognan (F1+F2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Atelier (réf. S19)\nIntervenant(s) :\n- Cécile RU
+ MEAU\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

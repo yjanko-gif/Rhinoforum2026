@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S16@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T161500
+DTEND:20260618T171500
+SUMMARY:Symposium GSK : Vers une nouvelle prise en charge des patients
+  atteints de polypose naso-sinusienne: quels changements pour 2026 ?
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Symposium (réf. S16
+ )\nModérateur(s) :\n- Elie SERRANO\nProgramme :\n• 16:15–16:20 · Intro
+ duction du symposiumElie SERRANO\n• 16:20–16:35 · Besoins non couverts
+  chez les patients atteints de polypose nasale sévèreGeoffrey MORTUAIR
+ E\n• 16:35–16:50 · Comment va évoluer la prise en charge?Jean Francois
+  PAPON\n• 16:50–17:10 · Présentation des données d'efficacité et de to
+ lérance d'une biothérapie dans la polypose naso-sinusienneEmilie BEQUI
+ GNON\n• 17:10–17:20 · Conclusion du symposiumElie SERRANO\nRhinoforum 
+ 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S13@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T161500
+DTEND:20260618T164500
+SUMMARY:Trucs et astuces pour améliorer ses compétences en chirurgie e
+ ndonasale
+LOCATION:Salle Pomerol (D1+D2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S13)\nIntervenant
+ (s) :\n- Azeddine LACHKAR\nRhinoforum 2026 - Bordeaux Palais des Congr
+ es
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

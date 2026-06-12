@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S12@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T135000
+DTEND:20260618T142000
+SUMMARY:Recommandations de l'AFR: Epistaxis sous anticoagulant/antiagr
+ égant :recommandations de prise en charge
+LOCATION:Salle Pomerol (D1+D2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Urgences - Recommandations (réf. S12)\nIntervenant(s) :\n-
+  Florian CHATELET\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

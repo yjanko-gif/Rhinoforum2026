@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S21@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T131500
+DTEND:20260618T134500
+SUMMARY:Place de la rhinomanométrie en pré-opératoire de l'obstruction
+  nasale
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Atelier (réf. S21)\nIntervenant(s) :\n- Maxime FI
+ EUX\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S30@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T090000
+DTEND:20260619T095500
+SUMMARY:Les recommandations de l'AFR par l'exemple sur les rhinites al
+ lergiques
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Recommandations (réf. S30)\nI
+ ntervenant(s) :\n- Justin MICHEL\n- Dario EBODE\nRhinoforum 2026 - Bor
+ deaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

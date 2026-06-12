@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S126@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T140000
+DTEND:20260619T142500
+SUMMARY:Dacryocystorhinostomie endonasale : prise en charge des récidi
+ ves
+LOCATION:Amphi C Monbazillac\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Atelier (réf. S126)\nIntervenant(s) :\n- Fayçal C
+ HETTIBI\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S105@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T093000
+DTEND:20260620T095500
+SUMMARY:Tout ce que vous voulez savoir sur la dyskinésie ciliaire prim
+ itive: registre Européen EPIC-PCD
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Atelier (réf. S105)
+ \nIntervenant(s) :\n- Jean Francois PAPON\nRhinoforum 2026 - Bordeaux 
+ Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

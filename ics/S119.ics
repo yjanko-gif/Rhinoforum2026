@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S119@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T113000
+DTEND:20260620T120000
+SUMMARY:La Dacryocystorhinostomie aux instruments froids
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Séance Vidéo Chirurgicale (réf.
+  S119)\nIntervenant(s) :\n- Azeddine LACHKAR\nRhinoforum 2026 - Bordea
+ ux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

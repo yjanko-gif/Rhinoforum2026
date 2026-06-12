@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S122@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T142500
+DTEND:20260618T153000
+SUMMARY:Symposium ALK : Rhinite allergique : de l'errance à la décisio
+ n (Regard croisé ORL / Pneumologue)
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Symposium (réf. S122)\nModéra
+ teur(s) :\n- Clémentine DAVEAU\nProgramme :\n• Le triathlon ORL : susp
+ ecter\, tester\, déciderGuillaume DE BONNECAZE\n• Rhinite-asthme : une
+  trajectoire (in)contrôlable ?Laurent GUILLEMINAULT\nRhinoforum 2026 -
+  Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

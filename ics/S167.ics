@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S167@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T160000
+DTEND:20260619T163000
+SUMMARY:L'exploration moléculaire de l'allergie : quand\, pourquoi et 
+ qu'en attendre ?
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Atelier (réf. S167)\nInterven
+ ant(s) :\n- Céline PALUSSIERE\nRhinoforum 2026 - Bordeaux Palais des C
+ ongres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S111@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T093000
+DTEND:20260620T095500
+SUMMARY:Carcinomes péri-orificiels du nez: de l'exérèse à la reconstru
+ ction
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S111)\nIntervenan
+ t(s) :\n- Guillaume DE BONNECAZE\nRhinoforum 2026 - Bordeaux Palais de
+ s Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
