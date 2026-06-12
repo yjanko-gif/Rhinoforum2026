@@ -53,7 +53,8 @@ summary::-webkit-details-marker{display:none;}
 .spk{color:var(--text2);font-size:13px;}
 .desc{font-size:14px;line-height:1.5;margin-top:5px;}
 .live>summary .ttl::after{content:" ● EN COURS";color:#e02020;font-size:10px;font-weight:800;vertical-align:2px;}
-.calico{border:none;cursor:pointer;background:var(--accent);color:#fff;border-radius:9px;padding:6px 10px;font-size:17px;line-height:1;margin-right:8px;vertical-align:middle;}
+.calbtn{display:block;width:100%;margin-top:14px;border:1px solid var(--gold);border-radius:11px;padding:11px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#5a1029,#7b1e3b);color:#fff;cursor:pointer;}
+.calbtn:active{background:var(--accent2);}
 .calhint{font-size:11px;color:var(--text2);margin-top:3px;}
 .empty{text-align:center;color:var(--text2);padding:36px 24px 8px;font-size:14px;line-height:1.6;}
 .days a{flex:1.4;text-align:center;text-decoration:none;border-radius:9px;padding:7px 2px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;transition:background .2s,color .2s;}
@@ -915,13 +916,13 @@ function addCal(c){
     setTimeout(function(){URL.revokeObjectURL(url);document.body.removeChild(a);},2000);}catch(e){}
 }
 cards.forEach(function(c){
-  var row=c.querySelector(".detail .drow");
-  if(!row)return;
-  row.textContent=row.textContent.replace(/^🗓️?\s*/,"");
+  var det=c.querySelector(".detail");
+  if(!det)return;
   var b=document.createElement("button");
-  b.type="button";b.className="calico";b.textContent="🗓";b.title="Ajouter au calendrier";
+  b.type="button";b.className="calbtn";b.textContent="📅 Ajouter au calendrier";
+  b.setAttribute("aria-label","Ajouter cette session au calendrier avec rappel 15 minutes avant");
   b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();addCal(c);});
-  row.insertBefore(b,row.firstChild);
+  det.appendChild(b);
 });
 // ----- favoris "Mes sessions" -----
 var favs;
@@ -966,7 +967,7 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 </script>
 <script>
 (function(){
-var APP_VERSION="2026.06.12-1";
+var APP_VERSION="2026.06.12-2";
 function toast(msg,withBtn){
   var t=document.createElement("div");t.id="updbar";
   t.innerHTML=msg+(withBtn?' <button id="updbtn">Recharger</button>':'');
