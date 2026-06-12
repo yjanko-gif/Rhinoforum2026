@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S55@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T140000
+DTEND:20260619T145500
+SUMMARY:Cas Cliniques avis d'experts : les rhinites difficiles sous l'
+ égide de la SFA
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Cas Cliniques / Avis d'Expert
+ s (réf. S55)\nModérateur(s) :\n- Somar KASSAB\nIntervenant(s) :\n- Hab
+ ib CHABANE\n- Céline PALUSSIERE\n- Jean Francois PAPON\n- Ludovic DE G
+ ABORY\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S88@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T113500
+DTEND:20260619T120000
+SUMMARY:Exploration fibroscopique sous hypnose de l'enfant et de l'adu
+ lte
+LOCATION:Salle Pessac-Léognan (F1+F2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Atelier (réf. S88)\nIntervenant(s) :\n- Olivier D
+ UFFAS\n- Charlotte CELLIER\nRhinoforum 2026 - Bordeaux Palais des Cong
+ res
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

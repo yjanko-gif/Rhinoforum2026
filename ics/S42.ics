@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S42@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T110500
+DTEND:20260619T120000
+SUMMARY:La septoplastie et la SRP par désarticulation expliquée à mes 
+ élèves
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Septorhinoplasties - Lecture (réf. S42)\nIntervenant(s) :\
+ n- Roger JANKOWSKI\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

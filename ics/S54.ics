@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S54@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T130000
+DTEND:20260619T143000
+SUMMARY:Ateliers de dissection pour les internes
+LOCATION:Hall d'Exposition\, Palais des Congres\, Bordeaux
+DESCRIPTION:Séance extraordinaire - Divers (réf. S54)\nIntervenant(s) 
+ :\n- Florent CARSUZAA\n- Charles-Henri HASSAN\nRhinoforum 2026 - Borde
+ aux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

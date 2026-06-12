@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S89@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T093000
+DTEND:20260620T095500
+SUMMARY:Appréhender l'orbite en chirurgie endoscopique
+LOCATION:Salle Pomerol (D1+D2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S89)\nIntervenant
+ (s) :\n- Mathieu VEYRAT\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

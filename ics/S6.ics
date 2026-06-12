@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S6@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T173000
+DTEND:20260618T184000
+SUMMARY:Cérémonie d'Ouverture
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Séance extraordinaire - Divers (réf. S6)\nProgramme :\n• 1
+ 7:25–18:00 · Discours du PrésidentLudovic DE GABORY\n• 18:00–18:40 · L
+ e vin\, l'odorat\, le goût : comment construire un œnologue ?Gilles DE
+  REVEL\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S43@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T110500
+DTEND:20260619T113000
+SUMMARY:Sinusite fongique invasive: la reconnaître et la traiter
+LOCATION:Salle Pomerol (D1+D2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Urgences - Atelier (réf. S43)\nIntervenant(s) :\n- Florian
+  CHATELET\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

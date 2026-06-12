@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S71@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T160000
+DTEND:20260619T170500
+SUMMARY:Symposium AstraZeneca : innovation thérapeutique dans la polyp
+ ose nasale : de l'épithélium aux biothérapies
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Symposium (réf. S71
+ )\nModérateur(s) :\n- Candice LA CROIX\n- Elie SERRANO\nProgramme :\n•
+  Du diagnostic à la biothérapie : comment l'épithélium guide la prise 
+ en charge ?Florent CARSUZAA\n• Biothérapies dans la PNS sévère : quell
+ es actualités en 2026 ?Geoffrey MORTUAIRE\n• Au carrefour du nez et de
+ s bronches : retour pratique du pneumologuePatrick BERGER\nRhinoforum 
+ 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

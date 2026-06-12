@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S85@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T110000
+DTEND:20260620T120000
+SUMMARY:Les recommandations de l'AFR sur les soins péri-opératoires en
+  Rhinologie
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Recommandations (réf. S85)\nModérateur(s) :\n- Lu
+ dovic DE GABORY\n- Valentin FAVIER\nProgramme :\n• Désinfection et ant
+ ibiotiquesClair VANDERSTEEN\n• Corticothérapie et antalgieJean-Baptist
+ e LECANU\n• HémostaseBenjamin VERILLAUD\n• Soins et consignes post-opé
+ ratoiresJean Francois PAPON\nRhinoforum 2026 - Bordeaux Palais des Con
+ gres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

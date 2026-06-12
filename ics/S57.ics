@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S57@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T150000
+DTEND:20260619T153000
+SUMMARY:Pourquoi et comment se mettre à la rhino-allergologie ?
+LOCATION:Salle Pomerol (D1+D2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Atelier (réf. S57)\nIntervena
+ nt(s) :\n- David SCHMITT\nRhinoforum 2026 - Bordeaux Palais des Congre
+ s
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

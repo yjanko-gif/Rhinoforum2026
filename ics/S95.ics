@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S95@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T090000
+DTEND:20260620T095500
+SUMMARY:Symposium Zambon : Que faire de plus pour la prise en charge d
+ es personnes souffrant de rhinite allergique ?
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Symposium (réf. S95)\nModérat
+ eur(s) :\n- Elie SERRANO\nProgramme :\n• Corticophobie : un rationnel 
+ pharmacologique ?Philippe DEVILLIER\n• Le vrai du faux de la corticoth
+ érapie par voie nasaleElie SERRANO\n• Prise en charge des deux sphères
+  : ORL et neuropsychiquePham-Thi NHÂN\nRhinoforum 2026 - Bordeaux Pala
+ is des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

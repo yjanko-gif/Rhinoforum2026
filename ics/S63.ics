@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S63@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T120500
+DTEND:20260619T130000
+SUMMARY:La rhinologie au Service de Santé des Armées
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Divers - Lecture (réf. S63)\nModérateur(s) :\n- Ludovic DE
+  GABORY\nProgramme :\n• Barotraumatisme des sinus et activités sub-aqu
+ atiquesJean Baptiste MORVAN\n• Polypose naso-sinusienne : enjeux chez 
+ le plongeur professionnel (et de loisirs) et le personnel naviguantJea
+ n Baptiste MORVAN\n• Traitement des sinusites frontales barotraumatiqu
+ es et infectieuses par dilatation du canal naso-frontal au ballonnetLu
+ dovic DE GABORY\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

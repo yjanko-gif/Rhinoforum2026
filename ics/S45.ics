@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S45@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T110500
+DTEND:20260619T120000
+SUMMARY:Symposium Sanofi Regeneron : Polypose Naso-Sinusienne : Une Vi
+ sion à 360°
+LOCATION:Salle Sauternes (E1+E2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Symposium (réf. S45
+ )\nModérateur(s) :\n- Ludovic DE GABORY\nProgramme :\n• « J'ai des pol
+ ypes qui reviennent docteur »Valentin FAVIER\n• « L'odorat sinon rien 
+ »Maxime FIEUX\n• « J'ai des polypes ou un champignon docteur?»Ludovic 
+ DE GABORY\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S82@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T090000
+DTEND:20260620T095500
+SUMMARY:Quelle prise en charge de l'odorat aujourd'hui ?
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Odorat - Table Ronde (réf. S82)\nModérateur(s) :\n- Basile
+  LANDIS\nIntervenant(s) :\n- Philippe ROMBAUX\n- Duc Trung NGUYEN\n- B
+ asile LANDIS\n- Emmanuelle ALBERT\n- Clair VANDERSTEEN\nRhinoforum 202
+ 6 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

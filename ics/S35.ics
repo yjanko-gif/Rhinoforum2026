@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S35@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T100500
+DTEND:20260619T103500
+SUMMARY:La chirurgie du papillome inversé\, particularités
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Séance Vidéo Chirurgicale (réf.
+  S35)\nIntervenant(s) :\n- Nicolas SAROUL\n- Clémentine DAVEAU\nRhinof
+ orum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

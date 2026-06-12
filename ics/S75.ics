@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S75@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T090000
+DTEND:20260620T092500
+SUMMARY:L'essentiel de la Rhinoplastie de préservation
+LOCATION:Amphi C Monbazillac\, Palais des Congres\, Bordeaux
+DESCRIPTION:Septorhinoplasties - Atelier (réf. S75)\nIntervenant(s) :\
+ n- Vincent PATRON\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

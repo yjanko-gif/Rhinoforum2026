@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S80@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T171000
+DTEND:20260619T173500
+SUMMARY:Coagulation de l'artère sphéno-palatine
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Urgences - Séance Vidéo Chirurgicale (réf. S80)\nIntervena
+ nt(s) :\n- Cécile RUMEAU\nRhinoforum 2026 - Bordeaux Palais des Congre
+ s
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

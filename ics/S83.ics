@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S83@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T100000
+DTEND:20260620T103000
+SUMMARY:La rhinoplastie médicale: un outil indispensable au rhinoplast
+ icien
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Septorhinoplasties - Séance Vidéo Chirurgicale (réf. S83)\
+ nIntervenant(s) :\n- Thomas RADULESCO\nRhinoforum 2026 - Bordeaux Pala
+ is des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

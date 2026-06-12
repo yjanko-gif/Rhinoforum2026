@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S77@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T171000
+DTEND:20260619T173500
+SUMMARY:Voie externe de rhinoplastie: comment débuter pas à pas ?
+LOCATION:Salle Margaux (G1+G2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Septorhinoplasties - Séance Vidéo Chirurgicale (réf. S77)\
+ nIntervenant(s) :\n- Benjamin VAIREL\nRhinoforum 2026 - Bordeaux Palai
+ s des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S4@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T142500
+DTEND:20260618T153000
+SUMMARY:Soigner l'épithélium pour une réussite optimale après chirurgi
+ e endoscopique
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Allergologie / Pneumologie - Lecture (réf. S4)\nIntervenan
+ t(s) :\n- Martin DESROSIERS\nRhinoforum 2026 - Bordeaux Palais des Con
+ gres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

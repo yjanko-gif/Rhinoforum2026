@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S99@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260620T083000
+DTEND:20260620T092500
+SUMMARY:Les recommandation de l'AFR par l'exemple sur la PNS
+LOCATION:Salle Pessac-Léognan (F1+F2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Recommandations (ré
+ f. S99)\nModérateur(s) :\n- Guillaume DE BONNECAZE\n- Jean Francois PA
+ PON\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

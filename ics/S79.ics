@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S79@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T163500
+DTEND:20260619T170500
+SUMMARY:Comment se repérer et opérer le recessus frontal?
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S79)\nIntervenant
+ (s) :\n- Jean Francois PAPON\nRhinoforum 2026 - Bordeaux Palais des Co
+ ngres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

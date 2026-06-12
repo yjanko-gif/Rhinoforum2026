@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S64@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T150000
+DTEND:20260619T153000
+SUMMARY:Les sinusites oedémato-puruentes : mise à jour sur des connais
+ sances diagnostiques et thérapeutiques
+LOCATION:Salle Saint Julien (H1+H2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Rhinosinusites chroniques / Polypose - Atelier (réf. S64)\
+ nIntervenant(s) :\n- Jean Francois PAPON\nRhinoforum 2026 - Bordeaux P
+ alais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

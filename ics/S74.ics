@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S74@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T163500
+DTEND:20260619T170000
+SUMMARY:Traumatisme trans-facial et agent vulnérant en place : Quelle 
+ stratégie ?
+LOCATION:Salle Pessac-Léognan (F1+F2)\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Atelier (réf. S74)\nIntervenant
+ (s) :\n- Jean Baptiste MORVAN\nRhinoforum 2026 - Bordeaux Palais des C
+ ongres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

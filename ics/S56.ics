@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S56@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260619T150000
+DTEND:20260619T153000
+SUMMARY:Les nouvelles voies d'abords maxillaires et frontales
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Techniques chirurgicales - Séance Vidéo Chirurgicale (réf.
+  S56)\nIntervenant(s) :\n- Justin MICHEL\n- Dario EBODE\nRhinoforum 20
+ 26 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

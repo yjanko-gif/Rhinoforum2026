@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rhinoforum2026//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rf26web-S5@rhinoforum2026
+DTSTAMP:20260611T000000Z
+DTSTART:20260618T161500
+DTEND:20260618T172000
+SUMMARY:Les teasing de l'innovation INOV'R
+LOCATION:Amphi A Saint-Estèphe\, Palais des Congres\, Bordeaux
+DESCRIPTION:Séance extraordinaire - Innovation (réf. S5)\nModérateur(s
+ ) :\n- Ludovic DE GABORY\nProgramme :\n• Avantages et limites des nouv
+ eaux dispositifs d'apprentissage : l'exemple du Cyranose® pour la chir
+ urgie endonasaleValentin FAVIER\, Patrice GALLET\n• Comment les insert
+ s intranasaux médicamenteux à longue durée d'action pourraient élargir
+  le rôle de l'ORL pour les pathologies neuropsychiatriques et neurodég
+ énératives ?Philippe BASTIDE\n• Du deep-learning\, de l'IA et de la CF
+ D au service de la rhinologie : du scanner à Airflowscan®\, comment ça
+  marche et à quoi ça sert ?Ludovic DE GABORY\, Nathan HUTIN\, Alexis M
+ ERESSE\n• L'impression d'une structure nasale 3D personnalisée après a
+ mputation : aide à la réhabilitation sociale avant la reconstruction d
+ éfinitiveLoraine VATIN\nRhinoforum 2026 - Bordeaux Palais des Congres
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
