@@ -1,204 +1,1032 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rhinoforum">
+<meta name="theme-color" content="#7b1e3b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Rhinoforum 2026 — Programme</title>
-<meta name="theme-color" content="#7b1e3b" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Rhinoforum" />
-<meta name="mobile-web-app-capable" content="yes" />
-<link rel="manifest" href="manifest.webmanifest" />
-<link rel="apple-touch-icon" href="icon-192.png" />
-<link rel="icon" href="icon-192.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 <style>
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; height: 100%; }
-  html { background: #7b1e3b; }
-  body {
-    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #241a1c; overflow: hidden;
-    --bg:#f2ebe2; --surface:#fffdf9; --ink:#241a1c; --ink2:#7d6a61; --line:#e8ddd0;
-    --accent:#7b1e3b; --gold:#9a7b3f; --appbar:#7b1e3b; --appbar-ink:#f6ebe0;
-    --display:"Spectral",Georgia,serif; --radius:12px;
-  }
-  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
-  /* shell plein écran */
-  #app { position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden;
-    font-size: 15px; line-height: 1.4; background: var(--bg); color: var(--ink); }
-
-  /* status bar */
-  .statusbar { height: calc(20px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); display: flex; align-items: center; justify-content: space-between; padding-left: 26px; padding-right: 26px; font-size: 13.5px; font-weight: 600; flex-shrink: 0; background: var(--appbar); color: var(--appbar-ink); }
-  .statusbar .sb-r { display: flex; align-items: center; gap: 5px; }
-  .statusbar .dot3 { width: 7px; height: 7px; border-radius: 50%; background: currentColor; display: inline-block; opacity: .85; }
-
-  /* app bar */
-  .appbar { background: var(--appbar); color: var(--appbar-ink); flex-shrink: 0; box-shadow: 0 2px 0 rgba(154,123,63,.5); z-index: 6; }
-  .appbar-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; }
-  .brand { display: flex; align-items: center; gap: 10px; }
-  .brand-mark { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #b94a63 0%, #7b1e3b 55%, #571026 100%); box-shadow: inset 0 0 0 1.5px rgba(246,235,224,.35); flex-shrink: 0; }
-  .brand-name { font-family: var(--display); font-size: 19px; font-weight: 600; letter-spacing: -.01em; line-height: 1; }
-  .brand-name span { color: var(--gold); }
-  .brand-sub { font-size: 11px; opacity: .72; margin-top: 3px; }
-  .icon-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--appbar-ink); background: rgba(255,255,255,.1); }
-
-  .searchbar { padding: 0 16px 12px; position: relative; }
-  .searchbar input { width: 100%; height: 40px; border-radius: 11px; border: none; padding: 0 38px 0 14px; font-size: 16px; background: rgba(255,255,255,.16); color: var(--appbar-ink); }
-  .searchbar input::placeholder { color: rgba(246,235,224,.6); }
-  .clearq { position: absolute; right: 26px; top: 8px; width: 24px; height: 24px; font-size: 20px; color: rgba(246,235,224,.8); }
-
-  .daybar { display: flex; align-items: center; gap: 10px; padding: 0 16px 12px; }
-  .days { display: flex; gap: 6px; flex: 1; }
-  .day { flex: 1; height: 46px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; background: rgba(255,255,255,.12); color: rgba(246,235,224,.82); transition: .15s; }
-  .day-d { font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
-  .day-n { font-size: 17px; font-weight: 650; font-family: var(--display); }
-  .day.on { background: #fffdf9; color: var(--accent); box-shadow: 0 4px 12px -4px rgba(0,0,0,.35); }
-  .filter-btn { position: relative; width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.12); color: var(--appbar-ink); flex-shrink: 0; }
-  .filter-btn.has { background: var(--gold); color: #fff; }
-  .fcount { position: absolute; top: -4px; right: -4px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: #fff; color: var(--accent); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
-
-  .chips-active { display: flex; gap: 6px; padding: 0 16px 11px; overflow-x: auto; }
-  .chips-active::-webkit-scrollbar { display: none; }
-  .chip { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 12px; padding: 5px 6px 5px 11px; border-radius: 14px; background: rgba(255,255,255,.16); color: var(--appbar-ink); font-weight: 500; }
-  .chip button { font-size: 15px; line-height: 1; opacity: .8; width: 16px; }
-  .chip-clear { white-space: nowrap; font-size: 12px; font-weight: 600; color: var(--appbar-ink); text-decoration: underline; padding: 5px 6px; opacity: .9; }
-
-  /* body */
-  .screen-body { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; background: var(--bg); }
-  .screen-body::-webkit-scrollbar { width: 0; }
-
-  .list { padding: 8px 14px 24px; }
-  .result-note { font-size: 12px; color: var(--ink2); padding: 8px 4px 4px; }
-  .slot { margin-top: 14px; }
-  .slot-head { display: flex; align-items: center; gap: 10px; padding: 4px 2px 9px; position: sticky; top: 0; background: linear-gradient(var(--bg) 70%, transparent); z-index: 2; }
-  .slot-time { font-family: var(--display); font-size: 17px; font-weight: 600; color: var(--ink); }
-  .slot-rule { flex: 1; height: 1px; background: var(--line); }
-  .slot-count { font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
-  .slot-head.live .slot-time { color: var(--accent); }
-  .slot-head.live .slot-count { color: var(--accent); font-weight: 600; }
-
-  .card { position: relative; display: flex; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 9px; overflow: hidden; box-shadow: 0 1px 2px rgba(80,40,30,.04); transition: transform .12s; }
-  .card:active { transform: scale(.985); }
-  .card-bar { width: 4px; flex-shrink: 0; background: var(--c-bar); }
-  .card-main { flex: 1; padding: 12px 4px 12px 12px; min-width: 0; }
-  .card-top { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; flex-wrap: wrap; }
-  .theme-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c-text); }
-  .fmt-pill { font-size: 10.5px; font-weight: 500; color: var(--ink2); background: color-mix(in srgb, var(--c-tint) 70%, transparent); padding: 2px 7px; border-radius: 6px; white-space: nowrap; }
-  .live-pill { font-size: 10px; font-weight: 700; color: #fff; background: var(--accent); padding: 2px 7px; border-radius: 6px; letter-spacing: .02em; }
-  .card-title { font-family: var(--display); font-size: 15px; font-weight: 600; line-height: 1.28; margin: 0 0 8px; color: var(--ink); letter-spacing: -.005em; text-wrap: pretty; }
-  .card-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11.5px; color: var(--ink2); }
-  .card-meta .m-time { font-weight: 600; color: color-mix(in srgb, var(--ink) 70%, transparent); }
-  .card-meta i { font-style: normal; opacity: .6; }
-  .m-room, .m-sp { display: inline-flex; gap: 3px; }
-  .star { flex-shrink: 0; width: 44px; align-self: stretch; font-size: 21px; color: #cfc8bf; display: flex; align-items: flex-start; justify-content: center; padding-top: 11px; }
-  .star.on { color: #d9a32a; }
-  .list-end { text-align: center; font-size: 11px; color: var(--ink2); opacity: .7; padding: 22px 0 6px; }
-
-  .empty { padding: 60px 34px; text-align: center; color: var(--ink2); display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .empty-em { font-size: 44px; color: var(--line); line-height: 1; }
-  .empty p { font-size: 16px; font-weight: 600; color: var(--ink); margin: 6px 0 0; }
-  .empty span { font-size: 13px; line-height: 1.5; max-width: 250px; }
-  .empty .btn-primary { margin-top: 14px; }
-
-  /* grille */
-  .grid-wrap { display: flex; flex-direction: column; height: 100%; }
-  .grid-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; }
-  .grid-inner { position: relative; }
-  .grid-head { position: sticky; top: 0; z-index: 5; display: flex; background: var(--surface); box-shadow: 0 1px 0 var(--line); }
-  .ghead-axis { flex-shrink: 0; position: sticky; left: 0; background: var(--surface); z-index: 6; }
-  .ghead-room { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border-left: 1px solid var(--line); }
-  .gh-name { font-size: 12px; font-weight: 650; color: var(--ink); }
-  .gh-cru { font-size: 9.5px; color: var(--ink2); }
-  .grid-body { position: relative; }
-  .g-tick { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--line); }
-  .g-tick.hour { border-top: 1px solid color-mix(in srgb, var(--line) 60%, var(--ink2)); }
-  .g-tlabel { position: sticky; left: 0; display: inline-block; font-size: 10px; color: var(--ink2); background: var(--bg); padding: 1px 4px; transform: translateY(-7px); font-weight: 600; }
-  .g-col { position: absolute; top: 0; bottom: 0; }
-  .g-block { position: absolute; overflow: hidden; text-align: left; border-radius: 7px; background: var(--c-tint); border-left: 3px solid var(--c-bar); padding: 4px 5px; display: flex; flex-direction: column; gap: 1px; color: var(--ink); transition: transform .1s; }
-  .g-block:active { transform: scale(.97); }
-  .g-block.fav { box-shadow: 0 0 0 1.5px #d9a32a inset; }
-  .gb-time { font-size: 9px; font-weight: 700; color: var(--c-text); }
-  .gb-title { font-size: 10.5px; line-height: 1.18; font-weight: 550; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .g-block.tiny .gb-title { -webkit-line-clamp: 1; }
-  .g-block.tiny { flex-direction: row; align-items: center; gap: 4px; }
-  .gb-star { position: absolute; top: 2px; right: 3px; font-size: 10px; color: #d9a32a; }
-  .now-line { position: absolute; right: 0; height: 0; border-top: 2px solid #d23; z-index: 4; display: flex; align-items: center; }
-  .now-dot { width: 9px; height: 9px; border-radius: 50%; background: #d23; margin-left: -4px; margin-top: -2px; }
-  .now-lb { font-size: 9px; font-weight: 700; color: #fff; background: #d23; padding: 1px 5px; border-radius: 4px; margin-left: 2px; margin-top: -1px; }
-  .grid-hint { flex-shrink: 0; text-align: center; font-size: 11px; color: var(--ink2); padding: 7px; background: var(--surface); border-top: 1px solid var(--line); }
-
-  /* mes sessions */
-  .mine-body { padding: 14px 14px 28px; }
-  .mine-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
-  .mine-h { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); white-space: nowrap; }
-  .mine-sub { font-size: 12.5px; color: var(--ink2); margin-top: 2px; }
-  .conflict-banner { display: flex; flex-direction: column; gap: 2px; background: color-mix(in srgb, #d23 12%, var(--surface)); border: 1px solid color-mix(in srgb, #d23 30%, transparent); border-radius: 12px; padding: 11px 13px; margin-bottom: 14px; }
-  .conflict-banner strong { font-size: 13.5px; color: #b81e1e; }
-  .conflict-banner span { font-size: 12px; color: var(--ink2); }
-  .mine-day-h { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); padding: 12px 2px 8px; }
-  .mine-card-wrap { position: relative; }
-  .mine-card-wrap.conflict .card { border-color: color-mix(in srgb, #d23 45%, transparent); }
-  .conflict-tag { position: absolute; top: -6px; left: 12px; z-index: 2; font-size: 9.5px; font-weight: 700; color: #fff; background: #d23; padding: 2px 7px; border-radius: 5px; letter-spacing: .03em; }
-
-  .btn-primary { background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; border-radius: 11px; padding: 11px 16px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; box-shadow: 0 6px 16px -8px rgba(123,30,59,.7); }
-  .btn-primary.sm { padding: 8px 13px; font-size: 13px; border-radius: 10px; }
-  .btn-primary.wide { width: 100%; padding: 14px; font-size: 15px; }
-  .btn-primary.is-fav { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); color: var(--accent); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 35%, transparent); }
-  .btn-ghost { width: 50px; border-radius: 11px; background: var(--bg); color: var(--ink); display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); }
-
-  /* tab bar */
-  .tabbar { flex-shrink: 0; display: flex; background: var(--surface); border-top: 1px solid var(--line); padding: 7px 8px calc(10px + env(safe-area-inset-bottom)); }
-  .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--ink2); padding: 4px 0; }
-  .tab.on { color: var(--accent); }
-  .tab-ic { position: relative; display: flex; }
-  .tab-lb { font-size: 10.5px; font-weight: 550; }
-  .tab-badge { position: absolute; top: -5px; right: -9px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-
-  /* sheets */
-  .sheet-back { position: fixed; inset: 0; background: rgba(20,12,14,.42); z-index: 40; display: flex; align-items: flex-end; animation: fade .2s ease; }
-  @keyframes fade { from { opacity: 0; } }
-  .sheet { width: 100%; max-height: 88%; overflow-y: auto; background: var(--surface); border-radius: 22px 22px 0 0; padding: 10px 20px calc(24px + env(safe-area-inset-bottom)); animation: rise .26s cubic-bezier(.2,.8,.2,1); }
-  @keyframes rise { from { transform: translateY(100%); } }
-  .sheet-grip { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 4px auto 14px; }
-  .sheet-tags { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .theme-tag.big { font-size: 11px; padding: 3px 9px; border-radius: 7px; background: var(--c-tint); color: var(--c-text); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-  .sheet-title { font-family: var(--display); font-size: 21px; line-height: 1.25; font-weight: 600; margin: 0 0 16px; color: var(--ink); text-wrap: pretty; }
-  .sheet-info { border-top: 1px solid var(--line); margin-bottom: 4px; }
-  .d-row { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-  .d-k { width: 86px; flex-shrink: 0; font-size: 12.5px; color: var(--ink2); }
-  .d-v { font-size: 13.5px; color: var(--ink); font-weight: 500; }
-  .sheet-sp { padding: 16px 0 8px; }
-  .sp-h { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2); margin-bottom: 10px; }
-  .sp-list { display: flex; flex-wrap: wrap; gap: 7px; }
-  .sp-chip { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 500; background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 4px 12px 4px 4px; color: var(--ink); }
-  .sp-av { width: 22px; height: 22px; border-radius: 50%; background: var(--c-bar); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-  .sheet-actions { display: flex; gap: 8px; margin-top: 18px; position: sticky; bottom: 0; }
-  .filter-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
-  .filter-head h2 { font-family: var(--display); font-size: 20px; font-weight: 600; margin: 0; }
-  .lnk { font-size: 13px; color: var(--accent); font-weight: 600; }
-  .filter-scroll { max-height: 50vh; overflow-y: auto; margin: 8px -4px 14px; padding: 0 4px; }
-  .fgroup { margin-bottom: 18px; }
-  .fgroup-h { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2); margin-bottom: 9px; }
-  .fgroup-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-  .fchip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 500; padding: 7px 12px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); color: var(--ink); }
-  .fchip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fc); }
-  .fchip.on { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); border-color: var(--accent); color: var(--accent); font-weight: 600; }
-
-  @media (min-width: 620px) {
-    /* sur desktop : centrer dans un cadre téléphone pour rester lisible */
-    html, body { background: #cfccc6; }
-    #app { max-width: 460px; margin: 0 auto; inset: 0; border-left: 1px solid rgba(0,0,0,.08); border-right: 1px solid rgba(0,0,0,.08); }
-  }
+:root{--bg:#f6f1ee;--card:#fffdfb;--text:#2a1a1f;--text2:#7d6a70;--accent:#7b1e3b;--accent2:#a8324f;--gold:#c9a227;--line:#e8ded8;--chipbg:#efe6e1;}
+@media (prefers-color-scheme:dark){:root{--bg:#140a0e;--card:#221318;--text:#f5edf0;--text2:#b39aa4;--line:#3a2630;--chipbg:#33222a;}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:50px;}
+input[name=day],input[name=fth],input[name=fro],input[name=fty]{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#4f0f26 0%,#7b1e3b 55%,#8e2747 100%);color:#fff;padding:13px 14px 11px;border-bottom:3px solid var(--gold);}
+header h1{margin:0;font-size:19px;font-weight:700;font-family:Georgia,'Times New Roman',serif;letter-spacing:.4px;}
+header .sub{font-size:12px;color:#ecd9b0;margin-top:2px;letter-spacing:.2px;}
+.days{display:flex;gap:6px;margin-top:9px;}
+.days label{flex:1;text-align:center;border-radius:9px;padding:7px 0;font-size:13px;font-weight:600;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;cursor:pointer;transition:background .2s,color .2s;}
+.search{margin-top:8px;display:none;}
+.search input{width:100%;border:none;border-radius:10px;padding:9px 12px;font-size:16px;background:rgba(255,255,255,.94);color:#111;outline:none;}
+.fbar{margin:10px 12px 0;background:var(--card);border-radius:14px;border:1px solid var(--line);box-shadow:0 1px 4px rgba(80,20,40,.05);}
+.fbar>summary{list-style:none;cursor:pointer;padding:11px 14px;font-size:14px;font-weight:600;color:var(--accent);}
+.fbar>summary::-webkit-details-marker{display:none;}
+.frow{padding:4px 10px 8px;}
+.flab{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin:2px 3px 5px;}
+.chips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+.chip{flex-shrink:0;border:1px solid transparent;background:var(--chipbg);color:var(--text);border-radius:16px;padding:6px 13px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s;}
+.count{padding:8px 16px 0;font-size:12px;color:var(--text2);}
+.day{padding:0 12px;}
+.dayhdr{display:none;}
+.timehdr{font-size:15px;font-weight:700;color:var(--accent);font-family:Georgia,'Times New Roman',serif;letter-spacing:.3px;padding:16px 4px 7px;border-left:3px solid var(--gold);padding-left:9px;margin-top:6px;}
+.card{background:var(--card);border-radius:16px;margin-bottom:9px;box-shadow:0 2px 10px rgba(80,20,40,.07),0 1px 2px rgba(80,20,40,.05);border-left:4px solid #999;overflow:hidden;transition:box-shadow .25s;}
+.card[open]{box-shadow:0 5px 18px rgba(80,20,40,.14),0 2px 4px rgba(80,20,40,.08);}
+.card.jhide{display:none!important;}
+summary{list-style:none;cursor:pointer;}
+.card>summary{padding:11px 13px;display:block;}
+summary::-webkit-details-marker{display:none;}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;}
+.badge{font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;padding:2.5px 7px;border-radius:6px;background:var(--chipbg);color:var(--text2);}
+.badge.theme{color:#fff;}
+.ttl{display:block;font-size:15.5px;line-height:1.35;font-weight:600;margin-bottom:4px;}
+.meta{display:block;font-size:12.5px;color:var(--text2);line-height:1.45;}
+.detail{padding:2px 13px 13px;border-top:1px solid var(--line);}
+.drow{font-size:14px;margin:9px 0 0;line-height:1.4;}
+.sec{margin-top:13px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);}
+.detail ul{margin:5px 0 0;padding-left:18px;font-size:14px;line-height:1.5;}
+.talk{margin:8px 0 0;font-size:14px;line-height:1.4;}
+.spk{color:var(--text2);font-size:13px;}
+.desc{font-size:14px;line-height:1.5;margin-top:5px;}
+.live>summary .ttl::after{content:" ● EN COURS";color:#e02020;font-size:10px;font-weight:800;vertical-align:2px;}
+.calbtn{display:block;width:100%;margin-top:14px;border:1px solid var(--gold);border-radius:11px;padding:11px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#5a1029,#7b1e3b);color:#fff;cursor:pointer;}
+.calbtn:active{background:var(--accent2);}
+.calhint{font-size:11px;color:var(--text2);margin-top:3px;}
+.empty{text-align:center;color:var(--text2);padding:36px 24px 8px;font-size:14px;line-height:1.6;}
+.days a{flex:1.4;text-align:center;text-decoration:none;border-radius:9px;padding:7px 2px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;transition:background .2s,color .2s;}
+.days a.active{background:#fff;color:var(--accent);}
+.card>summary{position:relative;padding-right:44px;}
+.starbtn{position:absolute;top:7px;right:8px;background:none;border:none;font-size:21px;color:#c9bbb0;cursor:pointer;padding:4px 6px;line-height:1;z-index:2;}
+.starbtn.on{color:var(--gold);text-shadow:0 0 6px rgba(201,162,39,.35);}
+body.favmode main .day{display:block!important;}
+body.favmode .timehdr{display:none;}
+body.favmode .dayhdr{display:block!important;font-family:Georgia,'Times New Roman',serif;font-size:17px;color:var(--accent);margin:16px 4px 4px;}
+body.favmode .card:not(.favsel){display:none!important;}
+body.favmode .fbar{display:none;}
+body.favmode header .days label{background:rgba(255,255,255,.14)!important;color:#fff!important;}
+#day0:checked~main #d1,#day0:checked~main #d2,#day1:checked~main #d0,#day1:checked~main #d2,#day2:checked~main #d0,#day2:checked~main #d1{display:none}
+#day0:checked~header label[for=day0]{background:#fff;color:var(--accent)}
+#day1:checked~header label[for=day1]{background:#fff;color:var(--accent)}
+#day2:checked~header label[for=day2]{background:#fff;color:var(--accent)}
+#th-0:checked~main .card:not([data-th="Allergologie / Pneumologie"]){display:none}
+#th-0:checked~.fbar label[for=th-0]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-1:checked~main .card:not([data-th="Divers"]){display:none}
+#th-1:checked~.fbar label[for=th-1]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-2:checked~main .card:not([data-th="Imagerie naso-sinusienne"]){display:none}
+#th-2:checked~.fbar label[for=th-2]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-3:checked~main .card:not([data-th="Odorat"]){display:none}
+#th-3:checked~.fbar label[for=th-3]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-4:checked~main .card:not([data-th="Programme Social"]){display:none}
+#th-4:checked~.fbar label[for=th-4]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-5:checked~main .card:not([data-th="Rhinosinusites chroniques / Polypose"]){display:none}
+#th-5:checked~.fbar label[for=th-5]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-6:checked~main .card:not([data-th="Septorhinoplasties"]){display:none}
+#th-6:checked~.fbar label[for=th-6]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-7:checked~main .card:not([data-th="Sommeil"]){display:none}
+#th-7:checked~.fbar label[for=th-7]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-8:checked~main .card:not([data-th="Séance extraordinaire"]){display:none}
+#th-8:checked~.fbar label[for=th-8]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-9:checked~main .card:not([data-th="Techniques chirurgicales"]){display:none}
+#th-9:checked~.fbar label[for=th-9]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-10:checked~main .card:not([data-th="Tumeurs et cancers"]){display:none}
+#th-10:checked~.fbar label[for=th-10]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-11:checked~main .card:not([data-th="Urgences"]){display:none}
+#th-11:checked~.fbar label[for=th-11]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#th-all:checked~.fbar label[for=th-all]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-0:checked~main .card:not([data-r="Amphi A Saint-Estèphe"]){display:none}
+#ro-0:checked~.fbar label[for=ro-0]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-1:checked~main .card:not([data-r="Amphi C Monbazillac"]){display:none}
+#ro-1:checked~.fbar label[for=ro-1]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-2:checked~main .card:not([data-r="Hall d'Exposition"]){display:none}
+#ro-2:checked~.fbar label[for=ro-2]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-3:checked~main .card:not([data-r="Salle Margaux (G1+G2)"]){display:none}
+#ro-3:checked~.fbar label[for=ro-3]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-4:checked~main .card:not([data-r="Salle Pessac-Léognan (F1+F2)"]){display:none}
+#ro-4:checked~.fbar label[for=ro-4]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-5:checked~main .card:not([data-r="Salle Pomerol (D1+D2)"]){display:none}
+#ro-5:checked~.fbar label[for=ro-5]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-6:checked~main .card:not([data-r="Salle Saint Julien (H1+H2)"]){display:none}
+#ro-6:checked~.fbar label[for=ro-6]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-7:checked~main .card:not([data-r="Salle Sauternes (E1+E2)"]){display:none}
+#ro-7:checked~.fbar label[for=ro-7]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ro-all:checked~.fbar label[for=ro-all]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-0:checked~main .card:not([data-ty="Atelier"]){display:none}
+#ty-0:checked~.fbar label[for=ty-0]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-1:checked~main .card:not([data-ty="Cas Cliniques / Avis d'Experts"]){display:none}
+#ty-1:checked~.fbar label[for=ty-1]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-2:checked~main .card:not([data-ty="Controverse"]){display:none}
+#ty-2:checked~.fbar label[for=ty-2]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-3:checked~main .card:not([data-ty="Divers"]){display:none}
+#ty-3:checked~.fbar label[for=ty-3]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-4:checked~main .card:not([data-ty="Innovation"]){display:none}
+#ty-4:checked~.fbar label[for=ty-4]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-5:checked~main .card:not([data-ty="Lecture"]){display:none}
+#ty-5:checked~.fbar label[for=ty-5]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-6:checked~main .card:not([data-ty="Recommandations"]){display:none}
+#ty-6:checked~.fbar label[for=ty-6]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-7:checked~main .card:not([data-ty="Symposium"]){display:none}
+#ty-7:checked~.fbar label[for=ty-7]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-8:checked~main .card:not([data-ty="Séance Vidéo Chirurgicale"]){display:none}
+#ty-8:checked~.fbar label[for=ty-8]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-9:checked~main .card:not([data-ty="Table Ronde"]){display:none}
+#ty-9:checked~.fbar label[for=ty-9]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#ty-all:checked~.fbar label[for=ty-all]{background:var(--accent);color:#fff;border-color:var(--accent)}
+#updbar{position:fixed;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom) + 16px);z-index:200;background:linear-gradient(135deg,#4f0f26,#7b1e3b);color:#fff;border:1px solid var(--gold);border-radius:13px;padding:12px 15px;font-size:14px;font-weight:500;box-shadow:0 6px 20px rgba(40,5,18,.35);display:flex;align-items:center;justify-content:space-between;gap:10px;animation:updin .35s ease;}
+#updbar.hide{opacity:0;transition:opacity .5s;}
+#updbar button{border:none;border-radius:9px;background:var(--gold);color:#3d0a1d;font-weight:700;font-size:13px;padding:8px 14px;cursor:pointer;flex-shrink:0;}
+@keyframes updin{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 </style>
 </head>
 <body>
-  <div id="app"></div>
-  <script src="data.js?v=1"></script>
-  <script src="app.js?v=1"></script>
+<input type="radio" name="day" id="day0" checked><input type="radio" name="day" id="day1"><input type="radio" name="day" id="day2">
+<input type="radio" name="fth" id="th-all" checked><input type="radio" name="fth" id="th-0"><input type="radio" name="fth" id="th-1"><input type="radio" name="fth" id="th-2"><input type="radio" name="fth" id="th-3"><input type="radio" name="fth" id="th-4"><input type="radio" name="fth" id="th-5"><input type="radio" name="fth" id="th-6"><input type="radio" name="fth" id="th-7"><input type="radio" name="fth" id="th-8"><input type="radio" name="fth" id="th-9"><input type="radio" name="fth" id="th-10"><input type="radio" name="fth" id="th-11">
+<input type="radio" name="fro" id="ro-all" checked><input type="radio" name="fro" id="ro-0"><input type="radio" name="fro" id="ro-1"><input type="radio" name="fro" id="ro-2"><input type="radio" name="fro" id="ro-3"><input type="radio" name="fro" id="ro-4"><input type="radio" name="fro" id="ro-5"><input type="radio" name="fro" id="ro-6"><input type="radio" name="fro" id="ro-7">
+<input type="radio" name="fty" id="ty-all" checked><input type="radio" name="fty" id="ty-0"><input type="radio" name="fty" id="ty-1"><input type="radio" name="fty" id="ty-2"><input type="radio" name="fty" id="ty-3"><input type="radio" name="fty" id="ty-4"><input type="radio" name="fty" id="ty-5"><input type="radio" name="fty" id="ty-6"><input type="radio" name="fty" id="ty-7"><input type="radio" name="fty" id="ty-8"><input type="radio" name="fty" id="ty-9">
+<header>
+<h1>Rhinoforum 2026 · 26ᵉ édition</h1>
+<div class="sub">Bordeaux · 18–20 juin 2026 · Programme scientifique · màj du site officiel</div>
+<nav class="days">
+<label for="day0">Jeu 18</label><label for="day1">Ven 19</label><label for="day2">Sam 20</label>
+<a id="favtab" href="#">★ Mes sessions</a>
+</nav>
+<div class="search" id="sw"><input id="q" type="search" placeholder="Rechercher (titre, orateur, salle…)"></div>
+</header>
+<details class="fbar"><summary>⚙️ Filtres (thème · salle · format)</summary>
+<div class="frow"><span class="flab">Thème</span><div class="chips"><label class="chip" for="th-all">Tous</label><label class="chip" for="th-0">Allergologie / Pneumologie</label><label class="chip" for="th-1">Divers</label><label class="chip" for="th-2">Imagerie naso-sinusienne</label><label class="chip" for="th-3">Odorat</label><label class="chip" for="th-4">Programme Social</label><label class="chip" for="th-5">Rhinosinusites chroniques / Polypose</label><label class="chip" for="th-6">Septorhinoplasties</label><label class="chip" for="th-7">Sommeil</label><label class="chip" for="th-8">Séance extraordinaire</label><label class="chip" for="th-9">Techniques chirurgicales</label><label class="chip" for="th-10">Tumeurs et cancers</label><label class="chip" for="th-11">Urgences</label></div></div>
+<div class="frow"><span class="flab">Salle</span><div class="chips"><label class="chip" for="ro-all">Tous</label><label class="chip" for="ro-0">Amphi A</label><label class="chip" for="ro-1">Amphi C</label><label class="chip" for="ro-2">Hall Expo</label><label class="chip" for="ro-3">Margaux</label><label class="chip" for="ro-4">Pessac-Léognan</label><label class="chip" for="ro-5">Pomerol</label><label class="chip" for="ro-6">Saint Julien</label><label class="chip" for="ro-7">Sauternes</label></div></div>
+<div class="frow"><span class="flab">Format</span><div class="chips"><label class="chip" for="ty-all">Tous</label><label class="chip" for="ty-0">Atelier</label><label class="chip" for="ty-1">Cas Cliniques / Avis d'Experts</label><label class="chip" for="ty-2">Controverse</label><label class="chip" for="ty-3">Divers</label><label class="chip" for="ty-4">Innovation</label><label class="chip" for="ty-5">Lecture</label><label class="chip" for="ty-6">Recommandations</label><label class="chip" for="ty-7">Symposium</label><label class="chip" for="ty-8">Séance Vidéo Chirurgicale</label><label class="chip" for="ty-9">Table Ronde</label></div></div>
+</details>
+<div class="empty" id="favempty" style="display:none">Aucune session sélectionnée pour l'instant.<br>Touchez l'étoile ☆ d'une session pour l'ajouter à « Mes sessions ».</div>
+<div class="count" id="count"></div>
+<main>
+<section class="day" id="d0" data-date="2026-06-18"><h2 class="dayhdr">Jeudi 18 juin</h2><div class="timehdr">12:30 – 13:15</div><details class="card" data-ref="S7" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s7 cocktail d'accueil hall d'exposition programme social divers  " data-deb="12:30" data-fin="13:15">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Cocktail d'Accueil</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 12:30 – 13:15</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S7</span></div></div></details>
+<div class="timehdr">13:15 – 13:45</div><details class="card" data-ref="S2" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s2 comment faire une voie prelacrymale ? amphi a saint-estephe techniques chirurgicales seance video chirurgicale ahmed alharbi " data-deb="13:15" data-fin="13:45">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Comment faire une voie prélacrymale ?</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Ahmed ALHARBI</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 13:45</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S2</span></div><div class="sec">Intervenant(s)</div><ul><li>Ahmed ALHARBI</li></ul></div></details>
+<details class="card" data-ref="S21" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s21 place de la rhinomanometrie en pre-operatoire de l'obstruction nasale salle margaux (g1+g2) divers atelier maxime fieux " data-deb="13:15" data-fin="13:45">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Place de la rhinomanométrie en pré-opératoire de l'obstruction nasale</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Maxime FIEUX</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 13:45</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S21</span></div><div class="sec">Intervenant(s)</div><ul><li>Maxime FIEUX</li></ul></div></details>
+<details class="card" data-ref="S17" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s17 chirurgie endoscopique des sinus : les reperes anatomiques a reconnaitre salle pessac-leognan (f1+f2) techniques chirurgicales atelier vincent bedarida " data-deb="13:15" data-fin="13:45">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Chirurgie endoscopique des sinus : les repères anatomiques à reconnaître</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Vincent BEDARIDA</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 13:45</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S17</span></div><div class="sec">Intervenant(s)</div><ul><li>Vincent BEDARIDA</li></ul></div></details>
+<details class="card" data-ref="S11" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s11 les bons reflexes a adopter devant la decouverte d'une tumeur naso-sinusienne salle pomerol (d1+d2) tumeurs et cancers atelier nicolas saroul " data-deb="13:15" data-fin="13:45">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les bons réflexes à adopter devant la découverte d'une tumeur naso-sinusienne</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Nicolas SAROUL</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 13:45</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S11</span></div><div class="sec">Intervenant(s)</div><ul><li>Nicolas SAROUL</li></ul></div></details>
+<details class="card" data-ref="S25" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s25 pathologies du sinus frontal: quelles solutions ? salle saint julien (h1+h2) divers atelier guillaume de bonnecaze " data-deb="13:15" data-fin="13:45">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Pathologies du sinus frontal: quelles solutions ?</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Guillaume DE BONNECAZE</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 13:45</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S25</span></div><div class="sec">Intervenant(s)</div><ul><li>Guillaume DE BONNECAZE</li></ul></div></details>
+<div class="timehdr">13:15 – 14:20</div><details class="card" data-ref="S15" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Sauternes (E1+E2)" data-ty="Cas Cliniques / Avis d'Experts" data-s="s15 retex orl-pneumo sur les biotherapies salle sauternes (e1+e2) allergologie / pneumologie cas cliniques / avis d'experts ludovic de gabory laurent guilleminault pierre-olivier girodet jean-baptiste lecanu geoffrey mortuaire " data-deb="13:15" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Cas Cliniques / Avis d'Experts</span></span>
+<span class="ttl">RETEX ORL-PNEUMO sur les biothérapies</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Ludovic DE GABORY, Laurent GUILLEMINAULT, Pierre-Olivier GIRODET +2</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:15 – 14:20</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S15</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li></ul><div class="sec">Intervenant(s)</div><ul><li>Laurent GUILLEMINAULT</li><li>Pierre-Olivier GIRODET</li><li>Jean-Baptiste LECANU</li><li>Geoffrey MORTUAIRE</li></ul></div></details>
+<div class="timehdr">13:50 – 14:20</div><details class="card" data-ref="S3" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s3 rhinopoiese laterale, 3 options chirurgicales : lambeaux geniens, frontal et de schmid-meyer amphi a saint-estephe techniques chirurgicales seance video chirurgicale gilles poissonnet " data-deb="13:50" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Rhinopoièse latérale, 3 options chirurgicales : lambeaux géniens, frontal et de Schmid-Meyer</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Gilles POISSONNET</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:50 – 14:20</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S3</span></div><div class="sec">Intervenant(s)</div><ul><li>Gilles POISSONNET</li></ul></div></details>
+<details class="card" data-ref="S22" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s22 cephalees et sinusites : strategie diagnostique salle margaux (g1+g2) divers atelier maxime humbert " data-deb="13:50" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Céphalées et sinusites : stratégie diagnostique</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Maxime HUMBERT</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:50 – 14:20</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S22</span></div><div class="sec">Intervenant(s)</div><ul><li>Maxime HUMBERT</li></ul></div></details>
+<details class="card" data-ref="S69" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s69 les prick-tests en pratique dans la rhinite allergique salle pessac-leognan (f1+f2) allergologie / pneumologie atelier clementine daveau " data-deb="13:50" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les Prick-tests en pratique dans la rhinite allergique</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Clémentine DAVEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:50 – 14:20</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S69</span></div><div class="sec">Intervenant(s)</div><ul><li>Clémentine DAVEAU</li></ul></div></details>
+<details class="card" data-ref="S12" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Pomerol (D1+D2)" data-ty="Recommandations" data-s="s12 recommandations de l'afr: epistaxis sous anticoagulant/antiagregant :recommandations de prise en charge salle pomerol (d1+d2) urgences recommandations florian chatelet " data-deb="13:50" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Recommandations de l'AFR: Epistaxis sous anticoagulant/antiagrégant :recommandations de prise en charge</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Florian CHATELET</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:50 – 14:20</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S12</span></div><div class="sec">Intervenant(s)</div><ul><li>Florian CHATELET</li></ul></div></details>
+<details class="card" data-ref="S26" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s26 comment integrer une activite allergologique dans une consultation orl liberal ? salle saint julien (h1+h2) allergologie / pneumologie atelier pascal flores " data-deb="13:50" data-fin="14:20">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">Comment intégrer une activité allergologique dans une consultation ORL libéral ?</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Pascal FLORES</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 13:50 – 14:20</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S26</span></div><div class="sec">Intervenant(s)</div><ul><li>Pascal FLORES</li></ul></div></details>
+<div class="timehdr">14:25 – 15:30</div><details class="card" data-ref="S4" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Amphi A Saint-Estèphe" data-ty="Lecture" data-s="s4 soigner l'epithelium pour une reussite optimale apres chirurgie endoscopique amphi a saint-estephe allergologie / pneumologie lecture martin desrosiers " data-deb="14:25" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Lecture</span></span>
+<span class="ttl">Soigner l'épithélium pour une réussite optimale après chirurgie endoscopique</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Martin DESROSIERS</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 14:25 – 15:30</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S4</span></div><div class="sec">Intervenant(s)</div><ul><li>Martin DESROSIERS</li></ul></div></details>
+<details class="card" data-ref="S122" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Sauternes (E1+E2)" data-ty="Symposium" data-s="s122 symposium alk : rhinite allergique : de l'errance a la decision (regard croise orl / pneumologue) salle sauternes (e1+e2) allergologie / pneumologie symposium clementine daveau guillaume de bonnecaze laurent guilleminault le triathlon orl : suspecter, tester, decider rhinite-asthme : une trajectoire (in)controlable ?" data-deb="14:25" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium ALK : Rhinite allergique : de l'errance à la décision (Regard croisé ORL / Pneumologue)</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Clémentine DAVEAU, Guillaume DE BONNECAZE, Laurent GUILLEMINAULT</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 14:25 – 15:30</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S122</span></div><div class="sec">Modérateur(s)</div><ul><li>Clémentine DAVEAU</li></ul><div class="sec">Programme</div><div class="talk">• Le triathlon ORL : suspecter, tester, décider<br><span class="spk">Guillaume DE BONNECAZE</span></div><div class="talk">• Rhinite-asthme : une trajectoire (in)contrôlable ?<br><span class="spk">Laurent GUILLEMINAULT</span></div></div></details>
+<div class="timehdr">15:30 – 16:15</div><details class="card" data-ref="S134" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s134 pause et visite de l'exposition hall d'exposition programme social divers  " data-deb="15:30" data-fin="16:15">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Pause et Visite de l'Exposition</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 15:30 – 16:15</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S134</span></div></div></details>
+<div class="timehdr">15:30 – 17:00</div><details class="card" data-ref="S9" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Hall d'Exposition" data-ty="Divers" data-s="s9 ateliers de dissection pour les internes hall d'exposition seance extraordinaire divers melodie kerimian chloe monnot " data-deb="15:30" data-fin="17:00">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Ateliers de dissection pour les internes</span>
+<span class="meta">📍 Hall d'Exposition<br>👤 Mélodie KERIMIAN, Chloé MONNOT</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 15:30 – 17:00</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S9</span></div><div class="sec">Intervenant(s)</div><ul><li>Mélodie KERIMIAN</li><li>Chloé MONNOT</li></ul></div></details>
+<div class="timehdr">16:15 – 17:20</div><details class="card" data-ref="S5" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Amphi A Saint-Estèphe" data-ty="Innovation" data-s="s5 les teasing de l'innovation inov'r amphi a saint-estephe seance extraordinaire innovation ludovic de gabory valentin favier patrice gallet philippe bastide nathan hutin alexis meresse loraine vatin avantages et limites des nouveaux dispositifs d'apprentissage : l'exemple du cyranose® pour la chirurgie endonasale comment les inserts intranasaux medicamenteux a longue duree d'action pourraient elargir le role de l'orl pour les pathologies neuropsychiatriques et neurodegeneratives ? du deep-learning, de l'ia et de la cfd au service de la rhinologie : du scanner a airflowscan®, comment ca marche et a quoi ca sert ? l'impression d'une structure nasale 3d personnalisee apres amputation : aide a la rehabilitation sociale avant la reconstruction definitive" data-deb="16:15" data-fin="17:20">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Innovation</span></span>
+<span class="ttl">Les teasing de l'innovation INOV'R</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Ludovic DE GABORY, Valentin FAVIER, Patrice GALLET +4</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 17:20</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S5</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li></ul><div class="sec">Programme</div><div class="talk">• Avantages et limites des nouveaux dispositifs d'apprentissage : l'exemple du Cyranose® pour la chirurgie endonasale<br><span class="spk">Valentin FAVIER, Patrice GALLET</span></div><div class="talk">• Comment les inserts intranasaux médicamenteux à longue durée d'action pourraient élargir le rôle de l'ORL pour les pathologies neuropsychiatriques et neurodégénératives ?<br><span class="spk">Philippe BASTIDE</span></div><div class="talk">• Du deep-learning, de l'IA et de la CFD au service de la rhinologie : du scanner à Airflowscan®, comment ça marche et à quoi ça sert ?<br><span class="spk">Ludovic DE GABORY, Nathan HUTIN, Alexis MERESSE</span></div><div class="talk">• L'impression d'une structure nasale 3D personnalisée après amputation : aide à la réhabilitation sociale avant la reconstruction définitive<br><span class="spk">Loraine VATIN</span></div></div></details>
+<div class="timehdr">16:15 – 16:45</div><details class="card" data-ref="S23" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s23 gestion des epistaxis dans la maladie de rendu-osler salle margaux (g1+g2) urgences atelier florent carsuzaa " data-deb="16:15" data-fin="16:45">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Atelier</span></span>
+<span class="ttl">Gestion des épistaxis dans la maladie de Rendu-Osler</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Florent CARSUZAA</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 16:45</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S23</span></div><div class="sec">Intervenant(s)</div><ul><li>Florent CARSUZAA</li></ul></div></details>
+<details class="card" data-ref="S19" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s19 rhinoliquorrhee spontanee : du diagnostic a la prise en charge globale salle pessac-leognan (f1+f2) divers atelier cecile rumeau " data-deb="16:15" data-fin="16:45">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Rhinoliquorrhée spontanée : du diagnostic à la prise en charge globale</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Cécile RUMEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 16:45</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S19</span></div><div class="sec">Intervenant(s)</div><ul><li>Cécile RUMEAU</li></ul></div></details>
+<details class="card" data-ref="S13" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s13 trucs et astuces pour ameliorer ses competences en chirurgie endonasale salle pomerol (d1+d2) techniques chirurgicales atelier azeddine lachkar " data-deb="16:15" data-fin="16:45">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Trucs et astuces pour améliorer ses compétences en chirurgie endonasale</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Azeddine LACHKAR</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 16:45</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S13</span></div><div class="sec">Intervenant(s)</div><ul><li>Azeddine LACHKAR</li></ul></div></details>
+<div class="timehdr">16:15 – 17:20</div><details class="card" data-ref="S27" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Table Ronde" data-s="s27 comment optimiser la qualite des reparations des pds de la pyramide nasale salle saint julien (h1+h2) techniques chirurgicales table ronde gilles poissonnet philippe boudard olivier malard guillaume de bonnecaze pointe nasale aile narinaire columelle dorsum nasal discussion" data-deb="16:15" data-fin="17:20">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Table Ronde</span></span>
+<span class="ttl">Comment optimiser la qualité des réparations des PDS de la pyramide nasale</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Gilles POISSONNET, Philippe BOUDARD, Olivier MALARD +1</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 17:20</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S27</span></div><div class="sec">Modérateur(s)</div><ul><li>Gilles POISSONNET</li><li>Philippe BOUDARD</li></ul><div class="sec">Programme</div><div class="talk">• Pointe nasale<br><span class="spk">Gilles POISSONNET</span></div><div class="talk">• Aile narinaire<br><span class="spk">Philippe BOUDARD</span></div><div class="talk">• Columelle<br><span class="spk">Olivier MALARD</span></div><div class="talk">• Dorsum nasal<br><span class="spk">Guillaume DE BONNECAZE</span></div><div class="talk">• Discussion</div></div></details>
+<div class="timehdr">16:15 – 17:15</div><details class="card" data-ref="S16" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Sauternes (E1+E2)" data-ty="Symposium" data-s="s16 symposium gsk : vers une nouvelle prise en charge des patients atteints de polypose naso-sinusienne: quels changements pour 2026 ? salle sauternes (e1+e2) rhinosinusites chroniques / polypose symposium elie serrano geoffrey mortuaire jean francois papon emilie bequignon introduction du symposium besoins non couverts chez les patients atteints de polypose nasale severe comment va evoluer la prise en charge? presentation des donnees d'efficacite et de tolerance d'une biotherapie dans la polypose naso-sinusienne conclusion du symposium" data-deb="16:15" data-fin="17:15">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium GSK : Vers une nouvelle prise en charge des patients atteints de polypose naso-sinusienne: quels changements pour 2026 ?</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Elie SERRANO, Geoffrey MORTUAIRE, Jean Francois PAPON +1</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:15 – 17:15</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S16</span></div><div class="sec">Modérateur(s)</div><ul><li>Elie SERRANO</li></ul><div class="sec">Programme</div><div class="talk">• 16:15–16:20 · Introduction du symposium<br><span class="spk">Elie SERRANO</span></div><div class="talk">• 16:20–16:35 · Besoins non couverts chez les patients atteints de polypose nasale sévère<br><span class="spk">Geoffrey MORTUAIRE</span></div><div class="talk">• 16:35–16:50 · Comment va évoluer la prise en charge?<br><span class="spk">Jean Francois PAPON</span></div><div class="talk">• 16:50–17:10 · Présentation des données d'efficacité et de tolérance d'une biothérapie dans la polypose naso-sinusienne<br><span class="spk">Emilie BEQUIGNON</span></div><div class="talk">• 17:10–17:20 · Conclusion du symposium<br><span class="spk">Elie SERRANO</span></div></div></details>
+<div class="timehdr">16:50 – 17:20</div><details class="card" data-ref="S24" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s24 les maladies de systeme en rhinologie : quand y penser et comment les prendre en charge ? salle margaux (g1+g2) rhinosinusites chroniques / polypose atelier emmanuelle mouchon gregory pugnet " data-deb="16:50" data-fin="17:20">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les maladies de système en rhinologie : quand y penser et comment les prendre en charge ?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Emmanuelle MOUCHON, Grégory PUGNET</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:50 – 17:20</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S24</span></div><div class="sec">Intervenant(s)</div><ul><li>Emmanuelle MOUCHON</li><li>Grégory PUGNET</li></ul></div></details>
+<details class="card" data-ref="S20" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Séance Vidéo Chirurgicale" data-s="s20 la chirurgie sur patient eveille : simple, efficace et rentable! salle pessac-leognan (f1+f2) techniques chirurgicales seance video chirurgicale justin michel thomas radulesco " data-deb="16:50" data-fin="17:20">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">La chirurgie sur patient éveillé : simple, efficace et rentable!</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Justin MICHEL, Thomas RADULESCO</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:50 – 17:20</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S20</span></div><div class="sec">Intervenant(s)</div><ul><li>Justin MICHEL</li><li>Thomas RADULESCO</li></ul></div></details>
+<details class="card" data-ref="S14" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s14 la prise en charge des sinusites fongiques allergiques salle pomerol (d1+d2) rhinosinusites chroniques / polypose atelier ahmed alharbi " data-deb="16:50" data-fin="17:20">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">La prise en charge des sinusites fongiques allergiques</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Ahmed ALHARBI</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 16:50 – 17:20</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S14</span></div><div class="sec">Intervenant(s)</div><ul><li>Ahmed ALHARBI</li></ul></div></details>
+<div class="timehdr">17:30 – 18:40</div><details class="card" data-ref="S6" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Amphi A Saint-Estèphe" data-ty="Divers" data-s="s6 ceremonie d'ouverture amphi a saint-estephe seance extraordinaire divers ludovic de gabory gilles de revel discours du president le vin, l'odorat, le gout : comment construire un œnologue ?" data-deb="17:30" data-fin="18:40">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Cérémonie d'Ouverture</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Ludovic DE GABORY, Gilles DE REVEL</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 17:30 – 18:40</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S6</span></div><div class="sec">Programme</div><div class="talk">• 17:25–18:00 · Discours du Président<br><span class="spk">Ludovic DE GABORY</span></div><div class="talk">• 18:00–18:40 · Le vin, l'odorat, le goût : comment construire un œnologue ?<br><span class="spk">Gilles DE REVEL</span></div></div></details>
+<div class="timehdr">18:40 – 19:30</div><details class="card" data-ref="S10" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s10 cocktail de bienvenue hall d'exposition programme social divers  " data-deb="18:40" data-fin="19:30">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Cocktail de bienvenue</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Jeudi 18 juin · 18:40 – 19:30</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S10</span></div></div></details>
+</section>
+<section class="day" id="d1" data-date="2026-06-19"><h2 class="dayhdr">Vendredi 19 juin</h2><div class="timehdr">9:00 – 9:55</div><details class="card" data-ref="S30" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Amphi A Saint-Estèphe" data-ty="Recommandations" data-s="s30 les recommandations de l'afr par l'exemple sur les rhinites allergiques amphi a saint-estephe allergologie / pneumologie recommandations justin michel dario ebode " data-deb="09:00" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Les recommandations de l'AFR par l'exemple sur les rhinites allergiques</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Justin MICHEL, Dario EBODE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:55</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S30</span></div><div class="sec">Intervenant(s)</div><ul><li>Justin MICHEL</li><li>Dario EBODE</li></ul></div></details>
+<div class="timehdr">9:00 – 9:30</div><details class="card" data-ref="S114" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Amphi C Monbazillac" data-ty="Lecture" data-s="s114 implication clinique de la mucine eosinophilique amphi c monbazillac rhinosinusites chroniques / polypose lecture stephan vlaminck " data-deb="09:00" data-fin="09:30">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Lecture</span></span>
+<span class="ttl">Implication clinique de la mucine éosinophilique</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Stephan VLAMINCK</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S114</span></div><div class="sec">Intervenant(s)</div><ul><li>Stephan VLAMINCK</li></ul></div></details>
+<details class="card" data-ref="S29" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Margaux (G1+G2)" data-ty="Controverse" data-s="s29 quelle contention apres septoplastie ? salle margaux (g1+g2) septorhinoplasties controverse jean-baptiste lecanu " data-deb="09:00" data-fin="09:30">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Controverse</span></span>
+<span class="ttl">Quelle contention après septoplastie ?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Jean-Baptiste LECANU</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:30</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S29</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean-Baptiste LECANU</li></ul></div></details>
+<div class="timehdr">9:00 – 10:00</div><details class="card" data-ref="S32" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Symposium" data-s="s32 symposium gsk : biotherapies emergentes dans la polypose nasale : comment integrer les preferences des patients ? salle pessac-leognan (f1+f2) rhinosinusites chroniques / polypose symposium cecile rumeau maxime fieux valentin favier florent carsuzaa decryptage de l'inflammation de type 2 et implications cliniques polypose nasale : defis de la prise en charge actuelle nouvelles strategies therapeutiques et decision partagee en pratique" data-deb="09:00" data-fin="10:00">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium GSK : Biothérapies émergentes dans la polypose nasale : comment intégrer les préférences des patients ?</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Cécile RUMEAU, Maxime FIEUX, Valentin FAVIER +1</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 10:00</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S32</span></div><div class="sec">Modérateur(s)</div><ul><li>Cécile RUMEAU</li></ul><div class="sec">Programme</div><div class="talk">• Décryptage de l'inflammation de type 2 et implications cliniques<br><span class="spk">Maxime FIEUX</span></div><div class="talk">• Polypose nasale : défis de la prise en charge actuelle<br><span class="spk">Valentin FAVIER</span></div><div class="talk">• Nouvelles stratégies thérapeutiques et décision partagée en pratique<br><span class="spk">Florent CARSUZAA</span></div></div></details>
+<div class="timehdr">9:00 – 9:30</div><details class="card" data-ref="S28" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s28 dcr endoscopique: indications et situations complexes salle pomerol (d1+d2) techniques chirurgicales atelier melodie kerimian " data-deb="09:00" data-fin="09:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">DCR endoscopique: indications et situations complexes</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Mélodie KERIMIAN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:30</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S28</span></div><div class="sec">Intervenant(s)</div><ul><li>Mélodie KERIMIAN</li></ul></div></details>
+<details class="card" data-ref="S47" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s47 nez, ronflement et apnee : que pensez ? salle saint julien (h1+h2) sommeil atelier philippe rombaux " data-deb="09:00" data-fin="09:30">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Atelier</span></span>
+<span class="ttl">Nez, ronflement et apnée : que pensez ?</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Philippe ROMBAUX</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:30</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S47</span></div><div class="sec">Intervenant(s)</div><ul><li>Philippe ROMBAUX</li></ul></div></details>
+<div class="timehdr">9:00 – 9:55</div><details class="card" data-ref="S31" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Sauternes (E1+E2)" data-ty="Cas Cliniques / Avis d'Experts" data-s="s31 cas cliniques avis d'experts sous l'egide de la sofa salle sauternes (e1+e2) divers cas cliniques / avis d'experts thomas radulesco ludovic de gabory amandine lechot joelle huth guillaume de bonnecaze " data-deb="09:00" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Cas Cliniques / Avis d'Experts</span></span>
+<span class="ttl">Cas cliniques avis d'experts sous l'égide de la SOFA</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Thomas RADULESCO, Ludovic DE GABORY, Amandine LECHOT +2</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:00 – 9:55</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S31</span></div><div class="sec">Modérateur(s)</div><ul><li>Thomas RADULESCO</li></ul><div class="sec">Intervenant(s)</div><ul><li>Ludovic DE GABORY</li><li>Amandine LECHOT</li><li>Joelle HUTH</li><li>Thomas RADULESCO</li><li>Guillaume DE BONNECAZE</li></ul></div></details>
+<div class="timehdr">9:30 – 10:00</div><details class="card" data-ref="S169" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s169 la radiotherapie des sinus : les essentiels a savoir amphi c monbazillac tumeurs et cancers atelier charles dupin " data-deb="09:30" data-fin="10:00">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">La radiothérapie des sinus : les essentiels à savoir</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Charles DUPIN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:30 – 10:00</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S169</span></div><div class="sec">Intervenant(s)</div><ul><li>Charles DUPIN</li></ul></div></details>
+<details class="card" data-ref="S34" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Margaux (G1+G2)" data-ty="Lecture" data-s="s34 les sinusites pediatriques: etat de l'art salle margaux (g1+g2) divers lecture francois simon " data-deb="09:30" data-fin="10:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Les sinusites pédiatriques: état de l'art</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 François SIMON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:30 – 10:00</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S34</span></div><div class="sec">Intervenant(s)</div><ul><li>François SIMON</li></ul></div></details>
+<details class="card" data-ref="S33" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s33 les differentes techniques de chirurgie turbinale : existe-til un gold standard ? salle pomerol (d1+d2) techniques chirurgicales atelier jean francois papon " data-deb="09:30" data-fin="10:00">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les différentes techniques de chirurgie turbinale : existe-til un gold standard ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:30 – 10:00</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S33</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Francois PAPON</li></ul></div></details>
+<div class="timehdr">9:30 – 10:35</div><details class="card" data-ref="S40" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Table Ronde" data-s="s40 les meilleurs choix pour reconstruire les pds transfixiantes nasales salle saint julien (h1+h2) techniques chirurgicales table ronde olivier malard martin penicaud khaled al tabaa florent espitalier " data-deb="09:30" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Table Ronde</span></span>
+<span class="ttl">Les meilleurs choix pour reconstruire les PDS transfixiantes nasales</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Olivier MALARD, Martin PENICAUD, Khaled AL TABAA +1</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 9:30 – 10:35</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S40</span></div><div class="sec">Modérateur(s)</div><ul><li>Olivier MALARD</li></ul><div class="sec">Intervenant(s)</div><ul><li>Olivier MALARD</li><li>Martin PENICAUD</li><li>Khaled AL TABAA</li><li>Florent ESPITALIER</li></ul></div></details>
+<div class="timehdr">10:05 – 10:35</div><details class="card" data-ref="S35" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s35 la chirurgie du papillome inverse, particularites amphi a saint-estephe techniques chirurgicales seance video chirurgicale nicolas saroul clementine daveau " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">La chirurgie du papillome inversé, particularités</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Nicolas SAROUL, Clémentine DAVEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S35</span></div><div class="sec">Intervenant(s)</div><ul><li>Nicolas SAROUL</li><li>Clémentine DAVEAU</li></ul></div></details>
+<details class="card" data-ref="S115" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s115 ou en est-on pour le syndrome du nez vide ? amphi c monbazillac divers atelier guillaume buiret " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Où en est-on pour le syndrome du nez vide ?</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Guillaume BUIRET</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S115</span></div><div class="sec">Intervenant(s)</div><ul><li>Guillaume BUIRET</li></ul></div></details>
+<details class="card" data-ref="S39" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s39 la rhinite non allergique : ou en sommes nous en 2026 salle margaux (g1+g2) allergologie / pneumologie atelier semia sahtout " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">La rhinite non allergique : où en sommes nous en 2026</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Semia SAHTOUT</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S39</span></div><div class="sec">Intervenant(s)</div><ul><li>Semia SAHTOUT</li></ul></div></details>
+<details class="card" data-ref="S38" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Recommandations" data-s="s38 les recommandations de l'afr par l'exemple : les vasoconstricteurs salle pessac-leognan (f1+f2) divers recommandations geoffrey mortuaire " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Les recommandations de l'AFR par l'exemple : les vasoconstricteurs</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Geoffrey MORTUAIRE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S38</span></div><div class="sec">Intervenant(s)</div><ul><li>Geoffrey MORTUAIRE</li></ul></div></details>
+<details class="card" data-ref="S36" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s36 education therapeutique autour de la polypose salle pomerol (d1+d2) rhinosinusites chroniques / polypose atelier emilie bequignon " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Education thérapeutique autour de la polypose</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Emilie BEQUIGNON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S36</span></div><div class="sec">Intervenant(s)</div><ul><li>Emilie BEQUIGNON</li></ul></div></details>
+<details class="card" data-ref="S37" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Sauternes (E1+E2)" data-ty="Atelier" data-s="s37 tout ce que vous voulez savoir sur le lavage nasal en toutes circonstances salle sauternes (e1+e2) divers atelier ludovic de gabory " data-deb="10:05" data-fin="10:35">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Tout ce que vous voulez savoir sur le lavage nasal en toutes circonstances</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Ludovic DE GABORY</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:05 – 10:35</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S37</span></div><div class="sec">Intervenant(s)</div><ul><li>Ludovic DE GABORY</li></ul></div></details>
+<div class="timehdr">10:35 – 11:05</div><details class="card" data-ref="S41" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s41 pause et visite de l'exposition hall d'exposition programme social divers  " data-deb="10:35" data-fin="11:05">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Pause et Visite de l'Exposition</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 10:35 – 11:05</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S41</span></div></div></details>
+<div class="timehdr">11:05 – 12:00</div><details class="card" data-ref="S42" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Amphi A Saint-Estèphe" data-ty="Lecture" data-s="s42 la septoplastie et la srp par desarticulation expliquee a mes eleves amphi a saint-estephe septorhinoplasties lecture roger jankowski " data-deb="11:05" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Lecture</span></span>
+<span class="ttl">La septoplastie et la SRP par désarticulation expliquée à mes élèves</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Roger JANKOWSKI</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 12:00</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S42</span></div><div class="sec">Intervenant(s)</div><ul><li>Roger JANKOWSKI</li></ul></div></details>
+<div class="timehdr">11:05 – 11:30</div><details class="card" data-ref="S48" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s48 la septoplastie pour les debutant amphi c monbazillac septorhinoplasties atelier amandine lechot " data-deb="11:05" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">La septoplastie pour les débutant</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Amandine LECHOT</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 11:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S48</span></div><div class="sec">Intervenant(s)</div><ul><li>Amandine LECHOT</li></ul></div></details>
+<details class="card" data-ref="S129" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s129 la phytotherapie et la rhinologie salle margaux (g1+g2) divers atelier marc durand " data-deb="11:05" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">La phytothérapie et la rhinologie</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Marc DURAND</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 11:30</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S129</span></div><div class="sec">Intervenant(s)</div><ul><li>Marc DURAND</li></ul></div></details>
+<details class="card" data-ref="S46" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Lecture" data-s="s46 l'ia appliquee au diagnostic de la rhinite allergique salle pessac-leognan (f1+f2) allergologie / pneumologie lecture julien goret " data-deb="11:05" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Lecture</span></span>
+<span class="ttl">L'IA appliquée au diagnostic de la rhinite allergique</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Julien GORET</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 11:30</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S46</span></div><div class="sec">Intervenant(s)</div><ul><li>Julien GORET</li></ul></div></details>
+<details class="card" data-ref="S43" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s43 sinusite fongique invasive: la reconnaitre et la traiter salle pomerol (d1+d2) urgences atelier florian chatelet " data-deb="11:05" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Atelier</span></span>
+<span class="ttl">Sinusite fongique invasive: la reconnaître et la traiter</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Florian CHATELET</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 11:30</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S43</span></div><div class="sec">Intervenant(s)</div><ul><li>Florian CHATELET</li></ul></div></details>
+<details class="card" data-ref="S50" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Séance Vidéo Chirurgicale" data-s="s50 abord endoscopique du sinus frontal salle saint julien (h1+h2) techniques chirurgicales seance video chirurgicale florent carsuzaa " data-deb="11:05" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Abord endoscopique du sinus frontal</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Florent CARSUZAA</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 11:30</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S50</span></div><div class="sec">Intervenant(s)</div><ul><li>Florent CARSUZAA</li></ul></div></details>
+<div class="timehdr">11:05 – 12:00</div><details class="card" data-ref="S45" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Sauternes (E1+E2)" data-ty="Symposium" data-s="s45 symposium sanofi regeneron : polypose naso-sinusienne : une vision a 360° salle sauternes (e1+e2) rhinosinusites chroniques / polypose symposium ludovic de gabory valentin favier maxime fieux « j'ai des polypes qui reviennent docteur » « l'odorat sinon rien » « j'ai des polypes ou un champignon docteur?»" data-deb="11:05" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium Sanofi Regeneron : Polypose Naso-Sinusienne : Une Vision à 360°</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Ludovic DE GABORY, Valentin FAVIER, Maxime FIEUX</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:05 – 12:00</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S45</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li></ul><div class="sec">Programme</div><div class="talk">• « J'ai des polypes qui reviennent docteur »<br><span class="spk">Valentin FAVIER</span></div><div class="talk">• « L'odorat sinon rien »<br><span class="spk">Maxime FIEUX</span></div><div class="talk">• « J'ai des polypes ou un champignon docteur?»<br><span class="spk">Ludovic DE GABORY</span></div></div></details>
+<div class="timehdr">11:35 – 12:00</div><details class="card" data-ref="S116" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi C Monbazillac" data-ty="Lecture" data-s="s116 que peut-on demander a l'ia pour la prise encharge de nos patients ? amphi c monbazillac divers lecture jean-baptiste lecanu " data-deb="11:35" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Que peut-on demander à l'IA pour la prise encharge de nos patients ?</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Jean-Baptiste LECANU</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:35 – 12:00</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S116</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean-Baptiste LECANU</li></ul></div></details>
+<details class="card" data-ref="S49" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s49 prevention et prise en charge des mucoceles apres chirurgie endoscopique salle margaux (g1+g2) techniques chirurgicales atelier ahmed alharbi " data-deb="11:35" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Prévention et prise en charge des mucocèles après chirurgie endoscopique</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Ahmed ALHARBI</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:35 – 12:00</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S49</span></div><div class="sec">Intervenant(s)</div><ul><li>Ahmed ALHARBI</li></ul></div></details>
+<details class="card" data-ref="S88" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s88 exploration fibroscopique sous hypnose de l'enfant et de l'adulte salle pessac-leognan (f1+f2) divers atelier olivier duffas charlotte cellier " data-deb="11:35" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Exploration fibroscopique sous hypnose de l'enfant et de l'adulte</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Olivier DUFFAS, Charlotte CELLIER</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:35 – 12:00</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S88</span></div><div class="sec">Intervenant(s)</div><ul><li>Olivier DUFFAS</li><li>Charlotte CELLIER</li></ul></div></details>
+<details class="card" data-ref="S44" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s44 comment choisir le meilleur lambeau pour reconstruire l'aile narinaire et la pointe nasale ? salle pomerol (d1+d2) techniques chirurgicales atelier philippe boudard " data-deb="11:35" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Comment choisir le meilleur lambeau pour reconstruire l'aile narinaire et la pointe nasale ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Philippe BOUDARD</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:35 – 12:00</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S44</span></div><div class="sec">Intervenant(s)</div><ul><li>Philippe BOUDARD</li></ul></div></details>
+<details class="card" data-ref="S51" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s51 tout savoir sur les tumeurs osseuses et fibro-osseuses naso-sinusiennes salle saint julien (h1+h2) tumeurs et cancers atelier clair vandersteen " data-deb="11:35" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Tout savoir sur les tumeurs osseuses et fibro-osseuses naso-sinusiennes</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Clair VANDERSTEEN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 11:35 – 12:00</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S51</span></div><div class="sec">Intervenant(s)</div><ul><li>Clair VANDERSTEEN</li></ul></div></details>
+<div class="timehdr">12:05 – 13:00</div><details class="card" data-ref="S52" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi A Saint-Estèphe" data-ty="Lecture" data-s="s52 l'obstruction nasale: avons-nous tout compris ? amphi a saint-estephe divers lecture basile landis " data-deb="12:05" data-fin="13:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">L'obstruction nasale: avons-nous tout compris ?</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Basile LANDIS</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 12:05 – 13:00</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S52</span></div><div class="sec">Intervenant(s)</div><ul><li>Basile LANDIS</li></ul></div></details>
+<details class="card" data-ref="S165" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s165 my work in rhinoplasty vs ai amphi c monbazillac septorhinoplasties atelier arturo ramirez leal " data-deb="12:05" data-fin="13:00">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">My work in rhinoplasty VS AI</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Arturo RAMIREZ LEAL</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 12:05 – 13:00</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S165</span></div><div class="sec">Intervenant(s)</div><ul><li>Arturo RAMIREZ LEAL</li></ul></div></details>
+<details class="card" data-ref="S63" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Saint Julien (H1+H2)" data-ty="Lecture" data-s="s63 la rhinologie au service de sante des armees salle saint julien (h1+h2) divers lecture ludovic de gabory jean baptiste morvan barotraumatisme des sinus et activites sub-aquatiques polypose naso-sinusienne : enjeux chez le plongeur professionnel (et de loisirs) et le personnel naviguant traitement des sinusites frontales barotraumatiques et infectieuses par dilatation du canal naso-frontal au ballonnet" data-deb="12:05" data-fin="13:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">La rhinologie au Service de Santé des Armées</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Ludovic DE GABORY, Jean Baptiste MORVAN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 12:05 – 13:00</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S63</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li></ul><div class="sec">Programme</div><div class="talk">• Barotraumatisme des sinus et activités sub-aquatiques<br><span class="spk">Jean Baptiste MORVAN</span></div><div class="talk">• Polypose naso-sinusienne : enjeux chez le plongeur professionnel (et de loisirs) et le personnel naviguant<br><span class="spk">Jean Baptiste MORVAN</span></div><div class="talk">• Traitement des sinusites frontales barotraumatiques et infectieuses par dilatation du canal naso-frontal au ballonnet<br><span class="spk">Ludovic DE GABORY</span></div></div></details>
+<div class="timehdr">13:00 – 14:30</div><details class="card" data-ref="S54" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Hall d'Exposition" data-ty="Divers" data-s="s54 ateliers de dissection pour les internes hall d'exposition seance extraordinaire divers florent carsuzaa charles-henri hassan " data-deb="13:00" data-fin="14:30">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Ateliers de dissection pour les internes</span>
+<span class="meta">📍 Hall d'Exposition<br>👤 Florent CARSUZAA, Charles-Henri HASSAN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 13:00 – 14:30</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S54</span></div><div class="sec">Intervenant(s)</div><ul><li>Florent CARSUZAA</li><li>Charles-Henri HASSAN</li></ul></div></details>
+<div class="timehdr">13:00 – 14:00</div><details class="card" data-ref="S142" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s142 cocktail dejeunatoire et visite de l'exposition hall d'exposition programme social divers  " data-deb="13:00" data-fin="14:00">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Cocktail Déjeunatoire et Visite de l'Exposition</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 13:00 – 14:00</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S142</span></div></div></details>
+<div class="timehdr">14:00 – 14:55</div><details class="card" data-ref="S55" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Amphi A Saint-Estèphe" data-ty="Cas Cliniques / Avis d'Experts" data-s="s55 cas cliniques avis d'experts : les rhinites difficiles sous l'egide de la sfa amphi a saint-estephe allergologie / pneumologie cas cliniques / avis d'experts somar kassab habib chabane celine palussiere jean francois papon ludovic de gabory " data-deb="14:00" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Cas Cliniques / Avis d'Experts</span></span>
+<span class="ttl">Cas Cliniques avis d'experts : les rhinites difficiles sous l'égide de la SFA</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Somar KASSAB, Habib CHABANE, Céline PALUSSIERE +2</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:55</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S55</span></div><div class="sec">Modérateur(s)</div><ul><li>Somar KASSAB</li></ul><div class="sec">Intervenant(s)</div><ul><li>Habib CHABANE</li><li>Céline PALUSSIERE</li><li>Jean Francois PAPON</li><li>Ludovic DE GABORY</li></ul></div></details>
+<div class="timehdr">14:00 – 14:25</div><details class="card" data-ref="S126" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s126 dacryocystorhinostomie endonasale : prise en charge des recidives amphi c monbazillac divers atelier faycal chettibi " data-deb="14:00" data-fin="14:25">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Dacryocystorhinostomie endonasale : prise en charge des récidives</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Fayçal CHETTIBI</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:25</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S126</span></div><div class="sec">Intervenant(s)</div><ul><li>Fayçal CHETTIBI</li></ul></div></details>
+<details class="card" data-ref="S162" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s162 comment selectionner les patients pour la stimulation du xii? salle margaux (g1+g2) sommeil atelier duc trung nguyen " data-deb="14:00" data-fin="14:25">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Atelier</span></span>
+<span class="ttl">Comment sélectionner les patients pour la stimulation du XII?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Duc Trung NGUYEN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:25</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S162</span></div><div class="sec">Intervenant(s)</div><ul><li>Duc Trung NGUYEN</li></ul></div></details>
+<div class="timehdr">14:00 – 14:55</div><details class="card" data-ref="S60" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Recommandations" data-s="s60 les recommandations du refcor - cancer des sinus par l'exemple : cas cliniques salle pessac-leognan (f1+f2) tumeurs et cancers recommandations antoine moya plana juliette thariat claire castain laurence digue sebastien vergez " data-deb="14:00" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Les recommandations du REFCOR - cancer des sinus par l'exemple : cas cliniques</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Antoine MOYA PLANA, Juliette THARIAT, Claire CASTAIN +2</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:55</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S60</span></div><div class="sec">Modérateur(s)</div><ul><li>Antoine MOYA PLANA</li></ul><div class="sec">Intervenant(s)</div><ul><li>Juliette THARIAT</li><li>Claire CASTAIN</li><li>Laurence DIGUE</li><li>Sébastien VERGEZ</li></ul></div></details>
+<div class="timehdr">14:00 – 14:25</div><details class="card" data-ref="S78" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pomerol (D1+D2)" data-ty="Lecture" data-s="s78 le cycle nasal : physiologie, pathologie, implications therapeutiques salle pomerol (d1+d2) rhinosinusites chroniques / polypose lecture geoffrey mortuaire " data-deb="14:00" data-fin="14:25">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Lecture</span></span>
+<span class="ttl">Le cycle nasal : physiologie, pathologie, implications thérapeutiques</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Geoffrey MORTUAIRE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:25</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S78</span></div><div class="sec">Intervenant(s)</div><ul><li>Geoffrey MORTUAIRE</li></ul></div></details>
+<details class="card" data-ref="S1" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s1 gestion des sinusites infectieuses compliquees salle saint julien (h1+h2) urgences atelier melodie kerimian " data-deb="14:00" data-fin="14:25">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Atelier</span></span>
+<span class="ttl">Gestion des sinusites infectieuses compliquées</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Mélodie KERIMIAN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:25</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S1</span></div><div class="sec">Intervenant(s)</div><ul><li>Mélodie KERIMIAN</li></ul></div></details>
+<div class="timehdr">14:00 – 14:55</div><details class="card" data-ref="S58" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Sauternes (E1+E2)" data-ty="Lecture" data-s="s58 epidemiologie et organisation de la rhinologie au senegal salle sauternes (e1+e2) divers lecture bay karim diallo " data-deb="14:00" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Epidémiologie et organisation de la rhinologie au Sénégal</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Bay Karim DIALLO</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:00 – 14:55</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S58</span></div><div class="sec">Intervenant(s)</div><ul><li>Bay Karim DIALLO</li></ul></div></details>
+<div class="timehdr">14:30 – 14:55</div><details class="card" data-ref="S106" style="border-left-color:#a8743a" data-th="Odorat" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s106 role des cytokines dans les troubles de l'olfaction amphi c monbazillac odorat atelier maxime fieux " data-deb="14:30" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#a8743a">Odorat</span><span class="badge">Atelier</span></span>
+<span class="ttl">Rôle des cytokines dans les troubles de l'olfaction</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Maxime FIEUX</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:30 – 14:55</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S106</span></div><div class="sec">Intervenant(s)</div><ul><li>Maxime FIEUX</li></ul></div></details>
+<details class="card" data-ref="S163" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s163 kystes et fistules du dos du nez salle margaux (g1+g2) divers atelier francois simon " data-deb="14:30" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Kystes et fistules du dos du nez</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 François SIMON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:30 – 14:55</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S163</span></div><div class="sec">Intervenant(s)</div><ul><li>François SIMON</li></ul></div></details>
+<details class="card" data-ref="S164" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s164 anatomie comparative sous sommeil induit du primate a l'homme salle pomerol (d1+d2) sommeil atelier mickael papaxanthos " data-deb="14:30" data-fin="14:55">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Atelier</span></span>
+<span class="ttl">Anatomie comparative sous sommeil induit du primate à l'homme</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Mickaël PAPAXANTHOS</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 14:30 – 14:55</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S164</span></div><div class="sec">Intervenant(s)</div><ul><li>Mickaël PAPAXANTHOS</li></ul></div></details>
+<div class="timehdr">15:00 – 15:30</div><details class="card" data-ref="S56" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s56 les nouvelles voies d'abords maxillaires et frontales amphi a saint-estephe techniques chirurgicales seance video chirurgicale justin michel dario ebode " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Les nouvelles voies d'abords maxillaires et frontales</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Justin MICHEL, Dario EBODE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S56</span></div><div class="sec">Intervenant(s)</div><ul><li>Justin MICHEL</li><li>Dario EBODE</li></ul></div></details>
+<details class="card" data-ref="S98" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi C Monbazillac" data-ty="Séance Vidéo Chirurgicale" data-s="s98 l'ethmoidectomie fonctionnelle pas a pas, trucs et astuces amphi c monbazillac techniques chirurgicales seance video chirurgicale maxime fieux clementine daveau " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">L'ethmoïdectomie fonctionnelle pas à pas, trucs et astuces</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Maxime FIEUX, Clémentine DAVEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S98</span></div><div class="sec">Intervenant(s)</div><ul><li>Maxime FIEUX</li><li>Clémentine DAVEAU</li></ul></div></details>
+<details class="card" data-ref="S62" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s62 reparation des pertes de substances de la columelle salle margaux (g1+g2) techniques chirurgicales atelier olivier malard " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Réparation des pertes de substances de la columelle</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Olivier MALARD</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S62</span></div><div class="sec">Intervenant(s)</div><ul><li>Olivier MALARD</li></ul></div></details>
+<details class="card" data-ref="S61" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s61 qu'attendre des differents traitements sur l'odorat dans la polypose ? salle pessac-leognan (f1+f2) rhinosinusites chroniques / polypose atelier emilie bequignon clair vandersteen " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Qu'attendre des différents traitements sur l'odorat dans la polypose ?</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Emilie BEQUIGNON, Clair VANDERSTEEN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S61</span></div><div class="sec">Intervenant(s)</div><ul><li>Emilie BEQUIGNON</li><li>Clair VANDERSTEEN</li></ul></div></details>
+<details class="card" data-ref="S57" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s57 pourquoi et comment se mettre a la rhino-allergologie ? salle pomerol (d1+d2) allergologie / pneumologie atelier david schmitt " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">Pourquoi et comment se mettre à la rhino-allergologie ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 David SCHMITT</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S57</span></div><div class="sec">Intervenant(s)</div><ul><li>David SCHMITT</li></ul></div></details>
+<details class="card" data-ref="S64" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s64 les sinusites oedemato-puruentes : mise a jour sur des connaissances diagnostiques et therapeutiques salle saint julien (h1+h2) rhinosinusites chroniques / polypose atelier jean francois papon " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les sinusites oedémato-puruentes : mise à jour sur des connaissances diagnostiques et thérapeutiques</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S64</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Francois PAPON</li></ul></div></details>
+<details class="card" data-ref="S59" style="border-left-color:#7d8a3f" data-th="Imagerie naso-sinusienne" data-r="Salle Sauternes (E1+E2)" data-ty="Atelier" data-s="s59 imagerie des lesions naso-sinusiennes: quiz didactique salle sauternes (e1+e2) imagerie naso-sinusienne atelier benjamin verillaud " data-deb="15:00" data-fin="15:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7d8a3f">Imagerie naso-sinusienne</span><span class="badge">Atelier</span></span>
+<span class="ttl">Imagerie des lésions naso-sinusiennes: quiz didactique</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Benjamin VERILLAUD</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:00 – 15:30</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S59</span></div><div class="sec">Intervenant(s)</div><ul><li>Benjamin VERILLAUD</li></ul></div></details>
+<div class="timehdr">15:30 – 16:00</div><details class="card" data-ref="S65" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s65 pause et visite de l'exposition hall d'exposition programme social divers  " data-deb="15:30" data-fin="16:00">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Pause et Visite de l'Exposition</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 15:30 – 16:00</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S65</span></div></div></details>
+<div class="timehdr">16:00 – 17:05</div><details class="card" data-ref="S66" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Amphi A Saint-Estèphe" data-ty="Cas Cliniques / Avis d'Experts" data-s="s66 cas cliniques avis d'experts : nez &amp; sommeil sous l'egide de l'afsorl amphi a saint-estephe sommeil cas cliniques / avis d'experts valentin favier xavier dufour pierre louis bastier duc trung nguyen " data-deb="16:00" data-fin="17:05">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Cas Cliniques / Avis d'Experts</span></span>
+<span class="ttl">Cas cliniques avis d'experts : nez &amp; sommeil sous l'égide de l'AFSORL</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Valentin FAVIER, Xavier DUFOUR, Pierre Louis BASTIER +1</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 17:05</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S66</span></div><div class="sec">Modérateur(s)</div><ul><li>Valentin FAVIER</li></ul><div class="sec">Intervenant(s)</div><ul><li>Valentin FAVIER</li><li>Xavier DUFOUR</li><li>Pierre Louis BASTIER</li><li>Duc Trung NGUYEN</li></ul></div></details>
+<div class="timehdr">16:00 – 16:30</div><details class="card" data-ref="S117" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s117 place de la respiration nasale dans la croissance faciale : applications pratiques amphi c monbazillac techniques chirurgicales atelier joelle huth " data-deb="16:00" data-fin="16:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Place de la respiration nasale dans la croissance faciale : applications pratiques</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Joelle HUTH</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 16:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S117</span></div><div class="sec">Intervenant(s)</div><ul><li>Joelle HUTH</li></ul></div></details>
+<details class="card" data-ref="S123" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s123 de la lesion a la regeneration : dynamique de l'epithelium apres chirurgie de la polypose salle margaux (g1+g2) rhinosinusites chroniques / polypose atelier martin desrosiers " data-deb="16:00" data-fin="16:30">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">De la lésion à la régénération : dynamique de l'épithélium après chirurgie de la polypose</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Martin DESROSIERS</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 16:30</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S123</span></div><div class="sec">Intervenant(s)</div><ul><li>Martin DESROSIERS</li></ul></div></details>
+<details class="card" data-ref="S73" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s73 la chirurgie de la valve salle pessac-leognan (f1+f2) septorhinoplasties atelier clair vandersteen " data-deb="16:00" data-fin="16:30">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">La chirurgie de la valve</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Clair VANDERSTEEN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 16:30</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S73</span></div><div class="sec">Intervenant(s)</div><ul><li>Clair VANDERSTEEN</li></ul></div></details>
+<details class="card" data-ref="S68" style="border-left-color:#7d8a3f" data-th="Imagerie naso-sinusienne" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s68 prise en charge des opacites sphenoidales ? salle pomerol (d1+d2) imagerie naso-sinusienne atelier olivier malard " data-deb="16:00" data-fin="16:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7d8a3f">Imagerie naso-sinusienne</span><span class="badge">Atelier</span></span>
+<span class="ttl">Prise en charge des opacités sphénoïdales ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Olivier MALARD</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 16:30</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S68</span></div><div class="sec">Intervenant(s)</div><ul><li>Olivier MALARD</li></ul></div></details>
+<details class="card" data-ref="S167" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s167 l'exploration moleculaire de l'allergie : quand, pourquoi et qu'en attendre ? salle saint julien (h1+h2) allergologie / pneumologie atelier celine palussiere " data-deb="16:00" data-fin="16:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">L'exploration moléculaire de l'allergie : quand, pourquoi et qu'en attendre ?</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Céline PALUSSIERE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 16:30</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S167</span></div><div class="sec">Intervenant(s)</div><ul><li>Céline PALUSSIERE</li></ul></div></details>
+<div class="timehdr">16:00 – 17:05</div><details class="card" data-ref="S71" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Sauternes (E1+E2)" data-ty="Symposium" data-s="s71 symposium astrazeneca : innovation therapeutique dans la polypose nasale : de l'epithelium aux biotherapies salle sauternes (e1+e2) rhinosinusites chroniques / polypose symposium candice la croix elie serrano florent carsuzaa geoffrey mortuaire patrick berger du diagnostic a la biotherapie : comment l'epithelium guide la prise en charge ? biotherapies dans la pns severe : quelles actualites en 2026 ? au carrefour du nez et des bronches : retour pratique du pneumologue" data-deb="16:00" data-fin="17:05">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium AstraZeneca : innovation thérapeutique dans la polypose nasale : de l'épithélium aux biothérapies</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Candice LA CROIX, Elie SERRANO, Florent CARSUZAA +2</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:00 – 17:05</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S71</span></div><div class="sec">Modérateur(s)</div><ul><li>Candice LA CROIX</li><li>Elie SERRANO</li></ul><div class="sec">Programme</div><div class="talk">• Du diagnostic à la biothérapie : comment l'épithélium guide la prise en charge ?<br><span class="spk">Florent CARSUZAA</span></div><div class="talk">• Biothérapies dans la PNS sévère : quelles actualités en 2026 ?<br><span class="spk">Geoffrey MORTUAIRE</span></div><div class="talk">• Au carrefour du nez et des bronches : retour pratique du pneumologue<br><span class="spk">Patrick BERGER</span></div></div></details>
+<div class="timehdr">16:35 – 17:35</div><details class="card" data-ref="S118" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Amphi C Monbazillac" data-ty="Divers" data-s="s118 session grand public : les troubles de l'odorat et leurs solutions amphi c monbazillac seance extraordinaire divers ludovic de gabory jean-michel maillard " data-deb="16:35" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Session Grand Public : Les troubles de l'odorat et leurs solutions</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Ludovic DE GABORY, Jean-Michel MAILLARD</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:35 – 17:35</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S118</span></div><div class="sec">Intervenant(s)</div><ul><li>Ludovic DE GABORY</li><li>Jean-Michel MAILLARD</li></ul></div></details>
+<div class="timehdr">16:35 – 17:05</div><details class="card" data-ref="S76" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s76 que sait-on sur les nouveaux cancers naso-sinusiens ? salle margaux (g1+g2) tumeurs et cancers atelier antoine moya plana " data-deb="16:35" data-fin="17:05">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Que sait-on sur les nouveaux cancers naso-sinusiens ?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Antoine MOYA PLANA</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:35 – 17:05</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S76</span></div><div class="sec">Intervenant(s)</div><ul><li>Antoine MOYA PLANA</li></ul></div></details>
+<div class="timehdr">16:35 – 17:00</div><details class="card" data-ref="S74" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s74 traumatisme trans-facial et agent vulnerant en place : quelle strategie ? salle pessac-leognan (f1+f2) techniques chirurgicales atelier jean baptiste morvan " data-deb="16:35" data-fin="17:00">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Traumatisme trans-facial et agent vulnérant en place : Quelle stratégie ?</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Jean Baptiste MORVAN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:35 – 17:00</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S74</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Baptiste MORVAN</li></ul></div></details>
+<div class="timehdr">16:35 – 17:05</div><details class="card" data-ref="S18" style="border-left-color:#7d8a3f" data-th="Imagerie naso-sinusienne" data-r="Salle Pomerol (D1+D2)" data-ty="Lecture" data-s="s18 comment lire une irm naso-sinusienne ? salle pomerol (d1+d2) imagerie naso-sinusienne lecture sandrine molinier " data-deb="16:35" data-fin="17:05">
+<summary><span class="badges"><span class="badge theme" style="background:#7d8a3f">Imagerie naso-sinusienne</span><span class="badge">Lecture</span></span>
+<span class="ttl">Comment lire une IRM naso-sinusienne ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Sandrine MOLINIER</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:35 – 17:05</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S18</span></div><div class="sec">Intervenant(s)</div><ul><li>Sandrine MOLINIER</li></ul></div></details>
+<details class="card" data-ref="S79" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s79 comment se reperer et operer le recessus frontal? salle saint julien (h1+h2) techniques chirurgicales atelier jean francois papon " data-deb="16:35" data-fin="17:05">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Comment se repérer et opérer le recessus frontal?</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 16:35 – 17:05</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S79</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Francois PAPON</li></ul></div></details>
+<div class="timehdr">17:10 – 17:35</div><details class="card" data-ref="S67" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s67 techniques de sphenoidotomie : cas pratiques amphi a saint-estephe techniques chirurgicales seance video chirurgicale xavier dufour " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Techniques de sphénoïdotomie : cas pratiques</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Xavier DUFOUR</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S67</span></div><div class="sec">Intervenant(s)</div><ul><li>Xavier DUFOUR</li></ul></div></details>
+<details class="card" data-ref="S77" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Margaux (G1+G2)" data-ty="Séance Vidéo Chirurgicale" data-s="s77 voie externe de rhinoplastie: comment debuter pas a pas ? salle margaux (g1+g2) septorhinoplasties seance video chirurgicale benjamin vairel " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Voie externe de rhinoplastie: comment débuter pas à pas ?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Benjamin VAIREL</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S77</span></div><div class="sec">Intervenant(s)</div><ul><li>Benjamin VAIREL</li></ul></div></details>
+<details class="card" data-ref="S166" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s166 la barriere epitheliale, l'inflammation de type ii et les biotherapies salle pessac-leognan (f1+f2) rhinosinusites chroniques / polypose atelier mickael papaxanthos " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">La barrière épithéliale, l'inflammation de type II et les biothérapies</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Mickaël PAPAXANTHOS</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S166</span></div><div class="sec">Intervenant(s)</div><ul><li>Mickaël PAPAXANTHOS</li></ul></div></details>
+<details class="card" data-ref="S70" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Pomerol (D1+D2)" data-ty="Lecture" data-s="s70 deviations (rhino)septales : quelle technique pour quels objectifs ? salle pomerol (d1+d2) septorhinoplasties lecture guillaume de bonnecaze " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Lecture</span></span>
+<span class="ttl">Déviations (rhino)septales : quelle technique pour quels objectifs ?</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Guillaume DE BONNECAZE</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S70</span></div><div class="sec">Intervenant(s)</div><ul><li>Guillaume DE BONNECAZE</li></ul></div></details>
+<details class="card" data-ref="S80" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Saint Julien (H1+H2)" data-ty="Séance Vidéo Chirurgicale" data-s="s80 coagulation de l'artere spheno-palatine salle saint julien (h1+h2) urgences seance video chirurgicale cecile rumeau " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Coagulation de l'artère sphéno-palatine</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Cécile RUMEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S80</span></div><div class="sec">Intervenant(s)</div><ul><li>Cécile RUMEAU</li></ul></div></details>
+<details class="card" data-ref="S72" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Sauternes (E1+E2)" data-ty="Atelier" data-s="s72 gestions des complications en chirurgie endoscopique salle sauternes (e1+e2) urgences atelier clair vandersteen " data-deb="17:10" data-fin="17:35">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Atelier</span></span>
+<span class="ttl">Gestions des complications en chirurgie endoscopique</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Clair VANDERSTEEN</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:10 – 17:35</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S72</span></div><div class="sec">Intervenant(s)</div><ul><li>Clair VANDERSTEEN</li></ul></div></details>
+<div class="timehdr">17:40 – 18:30</div><details class="card" data-ref="S168" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi C Monbazillac" data-ty="Divers" data-s="s168 conseil d'administration de l'afr amphi c monbazillac divers divers  " data-deb="17:40" data-fin="18:30">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Divers</span></span>
+<span class="ttl">Conseil d'administration de l'AFR</span>
+<span class="meta">📍 Amphi C Monbazillac</span></summary>
+<div class="detail"><div class="drow">🗓 Vendredi 19 juin · 17:40 – 18:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S168</span></div></div></details>
+</section>
+<section class="day" id="d2" data-date="2026-06-20"><h2 class="dayhdr">Samedi 20 juin</h2><div class="timehdr">8:30 – 8:55</div><details class="card" data-ref="S81" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s81 comment je fais la dcr ? amphi a saint-estephe techniques chirurgicales seance video chirurgicale amandine lechot " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Comment je fais la DCR ?</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Amandine LECHOT</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S81</span></div><div class="sec">Intervenant(s)</div><ul><li>Amandine LECHOT</li></ul></div></details>
+<details class="card" data-ref="S128" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s128 comment faites vous une polygraphie chez un enfant en ville ? retour d'experience amphi c monbazillac sommeil atelier pascal flores " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Atelier</span></span>
+<span class="ttl">Comment faites vous une polygraphie chez un enfant en ville ? Retour d'expérience</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Pascal FLORES</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S128</span></div><div class="sec">Intervenant(s)</div><ul><li>Pascal FLORES</li></ul></div></details>
+<details class="card" data-ref="S103" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s103 biotherapie dans la pns: que faire quand ca ne marche pas ? salle margaux (g1+g2) rhinosinusites chroniques / polypose atelier florent carsuzaa " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Biothérapie dans la PNS: que faire quand ça ne marche pas ?</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Florent CARSUZAA</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S103</span></div><div class="sec">Intervenant(s)</div><ul><li>Florent CARSUZAA</li></ul></div></details>
+<div class="timehdr">8:30 – 9:25</div><details class="card" data-ref="S99" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Recommandations" data-s="s99 les recommandation de l'afr par l'exemple sur la pns salle pessac-leognan (f1+f2) rhinosinusites chroniques / polypose recommandations guillaume de bonnecaze jean francois papon " data-deb="08:30" data-fin="09:25">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Les recommandation de l'AFR par l'exemple sur la PNS</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Guillaume DE BONNECAZE, Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 9:25</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S99</span></div><div class="sec">Modérateur(s)</div><ul><li>Guillaume DE BONNECAZE</li><li>Jean Francois PAPON</li></ul></div></details>
+<div class="timehdr">8:30 – 8:55</div><details class="card" data-ref="S87" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s87 reparation du dorsum nasal: les solutions pratiques salle pomerol (d1+d2) septorhinoplasties atelier martin penicaud " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">Réparation du dorsum nasal: les solutions pratiques</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Martin PENICAUD</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S87</span></div><div class="sec">Intervenant(s)</div><ul><li>Martin PENICAUD</li></ul></div></details>
+<details class="card" data-ref="S109" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s109 abord et optimisation des chirurgies du sphenoide salle saint julien (h1+h2) techniques chirurgicales atelier valentin favier " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Abord et optimisation des chirurgies du sphénoïde</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Valentin FAVIER</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S109</span></div><div class="sec">Intervenant(s)</div><ul><li>Valentin FAVIER</li></ul></div></details>
+<details class="card" data-ref="S94" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Sauternes (E1+E2)" data-ty="Lecture" data-s="s94 tout savoir sur le papillome inverse et sa prise en charge salle sauternes (e1+e2) tumeurs et cancers lecture ludovic de gabory " data-deb="08:30" data-fin="08:55">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Tout savoir sur le papillome inversé et sa prise en charge</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Ludovic DE GABORY</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 8:30 – 8:55</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S94</span></div><div class="sec">Intervenant(s)</div><ul><li>Ludovic DE GABORY</li></ul></div></details>
+<div class="timehdr">9:00 – 9:55</div><details class="card" data-ref="S82" style="border-left-color:#a8743a" data-th="Odorat" data-r="Amphi A Saint-Estèphe" data-ty="Table Ronde" data-s="s82 quelle prise en charge de l'odorat aujourd'hui ? amphi a saint-estephe odorat table ronde basile landis philippe rombaux duc trung nguyen emmanuelle albert clair vandersteen " data-deb="09:00" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#a8743a">Odorat</span><span class="badge">Table Ronde</span></span>
+<span class="ttl">Quelle prise en charge de l'odorat aujourd'hui ?</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Basile LANDIS, Philippe ROMBAUX, Duc Trung NGUYEN +2</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:55</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S82</span></div><div class="sec">Modérateur(s)</div><ul><li>Basile LANDIS</li></ul><div class="sec">Intervenant(s)</div><ul><li>Philippe ROMBAUX</li><li>Duc Trung NGUYEN</li><li>Basile LANDIS</li><li>Emmanuelle ALBERT</li><li>Clair VANDERSTEEN</li></ul></div></details>
+<div class="timehdr">9:00 – 9:25</div><details class="card" data-ref="S75" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s75 l'essentiel de la rhinoplastie de preservation amphi c monbazillac septorhinoplasties atelier vincent patron " data-deb="09:00" data-fin="09:25">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">L'essentiel de la Rhinoplastie de préservation</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Vincent PATRON</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:25</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S75</span></div><div class="sec">Intervenant(s)</div><ul><li>Vincent PATRON</li></ul></div></details>
+<details class="card" data-ref="S104" style="border-left-color:#7d8a3f" data-th="Imagerie naso-sinusienne" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s104 quand demander une irm dans les rhinosinusites salle margaux (g1+g2) imagerie naso-sinusienne atelier clementine daveau nicolas voisin " data-deb="09:00" data-fin="09:25">
+<summary><span class="badges"><span class="badge theme" style="background:#7d8a3f">Imagerie naso-sinusienne</span><span class="badge">Atelier</span></span>
+<span class="ttl">Quand demander une IRM dans les rhinosinusites</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Clémentine DAVEAU, Nicolas VOISIN</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:25</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S104</span></div><div class="sec">Intervenant(s)</div><ul><li>Clémentine DAVEAU</li><li>Nicolas VOISIN</li></ul></div></details>
+<details class="card" data-ref="S124" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s124 septoplastie endoscopique notre philosophie salle pomerol (d1+d2) septorhinoplasties atelier faycal chettibi " data-deb="09:00" data-fin="09:25">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">Septoplastie endoscopique notre philosophie</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Fayçal CHETTIBI</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:25</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S124</span></div><div class="sec">Intervenant(s)</div><ul><li>Fayçal CHETTIBI</li></ul></div></details>
+<details class="card" data-ref="S110" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s110 l'obstruction nasale declive et sa prise en charge chez les patients apneiques salle saint julien (h1+h2) divers atelier pierre louis bastier " data-deb="09:00" data-fin="09:25">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">L'obstruction nasale déclive et sa prise en charge chez les patients apnéiques</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Pierre Louis BASTIER</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:25</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S110</span></div><div class="sec">Intervenant(s)</div><ul><li>Pierre Louis BASTIER</li></ul></div></details>
+<div class="timehdr">9:00 – 9:55</div><details class="card" data-ref="S95" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Salle Sauternes (E1+E2)" data-ty="Symposium" data-s="s95 symposium zambon : que faire de plus pour la prise en charge des personnes souffrant de rhinite allergique ? salle sauternes (e1+e2) allergologie / pneumologie symposium elie serrano philippe devillier pham-thi nhan corticophobie : un rationnel pharmacologique ? le vrai du faux de la corticotherapie par voie nasale prise en charge des deux spheres : orl et neuropsychique" data-deb="09:00" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Symposium</span></span>
+<span class="ttl">Symposium Zambon : Que faire de plus pour la prise en charge des personnes souffrant de rhinite allergique ?</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Elie SERRANO, Philippe DEVILLIER, Pham-Thi NHÂN</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:00 – 9:55</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S95</span></div><div class="sec">Modérateur(s)</div><ul><li>Elie SERRANO</li></ul><div class="sec">Programme</div><div class="talk">• Corticophobie : un rationnel pharmacologique ?<br><span class="spk">Philippe DEVILLIER</span></div><div class="talk">• Le vrai du faux de la corticothérapie par voie nasale<br><span class="spk">Elie SERRANO</span></div><div class="talk">• Prise en charge des deux sphères : ORL et neuropsychique<br><span class="spk">Pham-Thi NHÂN</span></div></div></details>
+<div class="timehdr">9:30 – 10:00</div><details class="card" data-ref="S125" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s125 la prise en charge des atresies choanales unilaterales amphi c monbazillac divers atelier semia sahtout " data-deb="09:30" data-fin="10:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">La prise en charge des atrésies choanales unilatérales</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Semia SAHTOUT</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:30 – 10:00</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S125</span></div><div class="sec">Intervenant(s)</div><ul><li>Semia SAHTOUT</li></ul></div></details>
+<div class="timehdr">9:30 – 9:55</div><details class="card" data-ref="S105" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s105 tout ce que vous voulez savoir sur la dyskinesie ciliaire primitive: registre europeen epic-pcd salle margaux (g1+g2) rhinosinusites chroniques / polypose atelier jean francois papon " data-deb="09:30" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">Tout ce que vous voulez savoir sur la dyskinésie ciliaire primitive: registre Européen EPIC-PCD</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:30 – 9:55</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S105</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Francois PAPON</li></ul></div></details>
+<div class="timehdr">9:30 – 10:30</div><details class="card" data-ref="S100" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Cas Cliniques / Avis d'Experts" data-s="s100 cas clinique avis d'expert - dents &amp; sinus : les difficultes de l'implantologue avant - pendant - apres sous l'egide de la sfco salle pessac-leognan (f1+f2) divers cas cliniques / avis d'experts ludovic de gabory sylvain catros patrick limbour " data-deb="09:30" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Cas Cliniques / Avis d'Experts</span></span>
+<span class="ttl">Cas clinique avis d'expert - dents &amp; sinus : les difficultés de l'implantologue avant - pendant - après sous l'égide de la SFCO</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Ludovic DE GABORY, Sylvain CATROS, Patrick LIMBOUR</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:30 – 10:30</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S100</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li></ul><div class="sec">Intervenant(s)</div><ul><li>Sylvain CATROS</li><li>Patrick LIMBOUR</li></ul></div></details>
+<div class="timehdr">9:30 – 9:55</div><details class="card" data-ref="S89" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s89 apprehender l'orbite en chirurgie endoscopique salle pomerol (d1+d2) techniques chirurgicales atelier mathieu veyrat " data-deb="09:30" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Appréhender l'orbite en chirurgie endoscopique</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Mathieu VEYRAT</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:30 – 9:55</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S89</span></div><div class="sec">Intervenant(s)</div><ul><li>Mathieu VEYRAT</li></ul></div></details>
+<details class="card" data-ref="S111" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Saint Julien (H1+H2)" data-ty="Atelier" data-s="s111 carcinomes peri-orificiels du nez: de l'exerese a la reconstruction salle saint julien (h1+h2) techniques chirurgicales atelier guillaume de bonnecaze " data-deb="09:30" data-fin="09:55">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Atelier</span></span>
+<span class="ttl">Carcinomes péri-orificiels du nez: de l'exérèse à la reconstruction</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Guillaume DE BONNECAZE</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 9:30 – 9:55</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S111</span></div><div class="sec">Intervenant(s)</div><ul><li>Guillaume DE BONNECAZE</li></ul></div></details>
+<div class="timehdr">10:00 – 10:30</div><details class="card" data-ref="S83" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Amphi A Saint-Estèphe" data-ty="Séance Vidéo Chirurgicale" data-s="s83 la rhinoplastie medicale: un outil indispensable au rhinoplasticien amphi a saint-estephe septorhinoplasties seance video chirurgicale thomas radulesco " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">La rhinoplastie médicale: un outil indispensable au rhinoplasticien</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Thomas RADULESCO</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S83</span></div><div class="sec">Intervenant(s)</div><ul><li>Thomas RADULESCO</li></ul></div></details>
+<details class="card" data-ref="S127" style="border-left-color:#5a7d54" data-th="Allergologie / Pneumologie" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s127 la rhinite allergique en pratique : qui peut faire quoi ? amphi c monbazillac allergologie / pneumologie atelier gaelle rapidie " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#5a7d54">Allergologie / Pneumologie</span><span class="badge">Atelier</span></span>
+<span class="ttl">La rhinite allergique en pratique : qui peut faire quoi ?</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Gaelle RAPIDIE</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S127</span></div><div class="sec">Intervenant(s)</div><ul><li>Gaelle RAPIDIE</li></ul></div></details>
+<details class="card" data-ref="S120" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s120 les ensellures nasales : prevention et traitement salle margaux (g1+g2) septorhinoplasties atelier philippe rombaux " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">Les ensellures nasales : prévention et traitement</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Philippe ROMBAUX</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S120</span></div><div class="sec">Intervenant(s)</div><ul><li>Philippe ROMBAUX</li></ul></div></details>
+<details class="card" data-ref="S90" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s90 fibrome nasopharynge: strategie 2026 de prise en charge salle pomerol (d1+d2) tumeurs et cancers atelier benjamin verillaud " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Fibrome nasopharyngé: stratégie 2026 de prise en charge</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Benjamin VERILLAUD</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S90</span></div><div class="sec">Intervenant(s)</div><ul><li>Benjamin VERILLAUD</li></ul></div></details>
+<details class="card" data-ref="S112" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Saint Julien (H1+H2)" data-ty="Lecture" data-s="s112 lesions nasales induites par la cocaine salle saint julien (h1+h2) divers lecture vincent bedarida " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Lésions nasales induites par la cocaïne</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Vincent BEDARIDA</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S112</span></div><div class="sec">Intervenant(s)</div><ul><li>Vincent BEDARIDA</li></ul></div></details>
+<details class="card" data-ref="S96" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Sauternes (E1+E2)" data-ty="Séance Vidéo Chirurgicale" data-s="s96 le lambeau naso-septal pas a pas salle sauternes (e1+e2) techniques chirurgicales seance video chirurgicale jean francois papon " data-deb="10:00" data-fin="10:30">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Le lambeau naso-septal pas à pas</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Jean Francois PAPON</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:00 – 10:30</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S96</span></div><div class="sec">Intervenant(s)</div><ul><li>Jean Francois PAPON</li></ul></div></details>
+<div class="timehdr">10:30 – 11:00</div><details class="card" data-ref="S155" style="border-left-color:#9c7a1e" data-th="Programme Social" data-r="Hall d'Exposition" data-ty="Divers" data-s="s155 pause et visite de l'exposition hall d'exposition programme social divers  " data-deb="10:30" data-fin="11:00">
+<summary><span class="badges"><span class="badge theme" style="background:#9c7a1e">Programme Social</span><span class="badge">Divers</span></span>
+<span class="ttl">Pause et Visite de l'Exposition</span>
+<span class="meta">📍 Hall d'Exposition</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:30 – 11:00</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S155</span></div></div></details>
+<div class="timehdr">10:30 – 12:00</div><details class="card" data-ref="S91" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Hall d'Exposition" data-ty="Divers" data-s="s91 ateliers de dissection pour les internes hall d'exposition seance extraordinaire divers florian chatelet nicolas voisin " data-deb="10:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Ateliers de dissection pour les internes</span>
+<span class="meta">📍 Hall d'Exposition<br>👤 Florian CHATELET, Nicolas VOISIN</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 10:30 – 12:00</div><div class="drow">📍 Hall d'Exposition · <span style="color:var(--text2)">réf. S91</span></div><div class="sec">Intervenant(s)</div><ul><li>Florian CHATELET</li><li>Nicolas VOISIN</li></ul></div></details>
+<div class="timehdr">11:00 – 12:00</div><details class="card" data-ref="S85" style="border-left-color:#8a7d72" data-th="Divers" data-r="Amphi A Saint-Estèphe" data-ty="Recommandations" data-s="s85 les recommandations de l'afr sur les soins peri-operatoires en rhinologie amphi a saint-estephe divers recommandations ludovic de gabory valentin favier clair vandersteen jean-baptiste lecanu benjamin verillaud jean francois papon desinfection et antibiotiques corticotherapie et antalgie hemostase soins et consignes post-operatoires" data-deb="11:00" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Recommandations</span></span>
+<span class="ttl">Les recommandations de l'AFR sur les soins péri-opératoires en Rhinologie</span>
+<span class="meta">📍 Amphi A Saint-Estèphe<br>👤 Ludovic DE GABORY, Valentin FAVIER, Clair VANDERSTEEN +3</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 12:00</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S85</span></div><div class="sec">Modérateur(s)</div><ul><li>Ludovic DE GABORY</li><li>Valentin FAVIER</li></ul><div class="sec">Programme</div><div class="talk">• Désinfection et antibiotiques<br><span class="spk">Clair VANDERSTEEN</span></div><div class="talk">• Corticothérapie et antalgie<br><span class="spk">Jean-Baptiste LECANU</span></div><div class="talk">• Hémostase<br><span class="spk">Benjamin VERILLAUD</span></div><div class="talk">• Soins et consignes post-opératoires<br><span class="spk">Jean Francois PAPON</span></div></div></details>
+<div class="timehdr">11:00 – 11:30</div><details class="card" data-ref="S121" style="border-left-color:#b04a68" data-th="Rhinosinusites chroniques / Polypose" data-r="Amphi C Monbazillac" data-ty="Atelier" data-s="s121 la chirurgie des reprises dans la polypose nasosinusienne amphi c monbazillac rhinosinusites chroniques / polypose atelier faycal chettibi " data-deb="11:00" data-fin="11:30">
+<summary><span class="badges"><span class="badge theme" style="background:#b04a68">Rhinosinusites chroniques / Polypose</span><span class="badge">Atelier</span></span>
+<span class="ttl">La chirurgie des reprises dans la polypose nasosinusienne</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Fayçal CHETTIBI</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 11:30</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S121</span></div><div class="sec">Intervenant(s)</div><ul><li>Fayçal CHETTIBI</li></ul></div></details>
+<div class="timehdr">11:00 – 11:25</div><details class="card" data-ref="S107" style="border-left-color:#6b3a78" data-th="Tumeurs et cancers" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s107 gestion de l'envahissement orbitaire des tumeurs naso-sinusiennes salle margaux (g1+g2) tumeurs et cancers atelier antoine moya plana " data-deb="11:00" data-fin="11:25">
+<summary><span class="badges"><span class="badge theme" style="background:#6b3a78">Tumeurs et cancers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Gestion de l'envahissement orbitaire des tumeurs naso-sinusiennes</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Antoine MOYA PLANA</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 11:25</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S107</span></div><div class="sec">Intervenant(s)</div><ul><li>Antoine MOYA PLANA</li></ul></div></details>
+<details class="card" data-ref="S101" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Lecture" data-s="s101 le prp en rhinologie: gadget ou avancee ? salle pessac-leognan (f1+f2) divers lecture dario ebode " data-deb="11:00" data-fin="11:25">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Lecture</span></span>
+<span class="ttl">Le PRP en Rhinologie: gadget ou avancée ?</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Dario EBODE</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 11:25</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S101</span></div><div class="sec">Intervenant(s)</div><ul><li>Dario EBODE</li></ul></div></details>
+<details class="card" data-ref="S92" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s92 alternative a la depose/repose salle pomerol (d1+d2) septorhinoplasties atelier amandine lechot " data-deb="11:00" data-fin="11:25">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">Alternative à la dépose/repose</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Amandine LECHOT</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 11:25</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S92</span></div><div class="sec">Intervenant(s)</div><ul><li>Amandine LECHOT</li></ul></div></details>
+<div class="timehdr">11:00 – 12:00</div><details class="card" data-ref="S113" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Saint Julien (H1+H2)" data-ty="Innovation" data-s="s113 actualite sur la recherche clinique en rhinologie salle saint julien (h1+h2) divers innovation thomas radulesco mathieu veyrat vanessa adewole antoine lagadec qu'a-t-on appris avec la simulation numerique des ecoulements (cfd) en rhinologie ? les sinusites chroniques atelectasiques : etudes radiologiques sur 70 patients apport de l'irm ponderee en diffusion par rapport a l'irm conventionnelle dans le diagnostic differentiel des mucopyoceles et des mucoceles sequelles olfactives des chirurgies nasales fonctionnelles ou esthetiques : une revue systematique avec meta-analyse" data-deb="11:00" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Innovation</span></span>
+<span class="ttl">Actualité sur la recherche clinique en Rhinologie</span>
+<span class="meta">📍 Salle Saint Julien (H1+H2)<br>👤 Thomas RADULESCO, Mathieu VEYRAT, Vanessa ADEWOLE +1</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 12:00</div><div class="drow">📍 Salle Saint Julien (H1+H2) · <span style="color:var(--text2)">réf. S113</span></div><div class="sec">Programme</div><div class="talk">• Qu'a-t-on appris avec la simulation numérique des écoulements (CFD) en Rhinologie ?<br><span class="spk">Thomas RADULESCO</span></div><div class="talk">• Les sinusites chroniques atélectasiques : études radiologiques sur 70 patients<br><span class="spk">Mathieu VEYRAT</span></div><div class="talk">• Apport de l'IRM pondérée en diffusion par rapport à l'IRM conventionnelle dans le diagnostic différentiel des mucopyocèles et des mucocèles<br><span class="spk">Vanessa ADEWOLE</span></div><div class="talk">• Séquelles olfactives des chirurgies nasales fonctionnelles ou esthétiques : une revue systématique avec méta-analyse<br><span class="spk">Antoine LAGADEC</span></div></div></details>
+<div class="timehdr">11:00 – 11:25</div><details class="card" data-ref="S97" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Sauternes (E1+E2)" data-ty="Séance Vidéo Chirurgicale" data-s="s97 septectomie frontal endoscopique par voie transseptale salle sauternes (e1+e2) techniques chirurgicales seance video chirurgicale cecile rumeau " data-deb="11:00" data-fin="11:25">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Septectomie frontal endoscopique par voie transseptale</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Cécile RUMEAU</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:00 – 11:25</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S97</span></div><div class="sec">Intervenant(s)</div><ul><li>Cécile RUMEAU</li></ul></div></details>
+<div class="timehdr">11:30 – 12:00</div><details class="card" data-ref="S161" style="border-left-color:#3f4e7d" data-th="Sommeil" data-r="Amphi C Monbazillac" data-ty="Séance Vidéo Chirurgicale" data-s="s161 comment realiser et interpreter une endoscopie sous sommeil induit ? amphi c monbazillac sommeil seance video chirurgicale melodie kerimian " data-deb="11:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#3f4e7d">Sommeil</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">Comment réaliser et interprêter une endoscopie sous sommeil induit ?</span>
+<span class="meta">📍 Amphi C Monbazillac<br>👤 Mélodie KERIMIAN</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:30 – 12:00</div><div class="drow">📍 Amphi C Monbazillac · <span style="color:var(--text2)">réf. S161</span></div><div class="sec">Intervenant(s)</div><ul><li>Mélodie KERIMIAN</li></ul></div></details>
+<details class="card" data-ref="S108" style="border-left-color:#4f7d82" data-th="Septorhinoplasties" data-r="Salle Margaux (G1+G2)" data-ty="Atelier" data-s="s108 la rhinoplastie endoscopique salle margaux (g1+g2) septorhinoplasties atelier justin michel " data-deb="11:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#4f7d82">Septorhinoplasties</span><span class="badge">Atelier</span></span>
+<span class="ttl">La rhinoplastie endoscopique</span>
+<span class="meta">📍 Salle Margaux (G1+G2)<br>👤 Justin MICHEL</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:30 – 12:00</div><div class="drow">📍 Salle Margaux (G1+G2) · <span style="color:var(--text2)">réf. S108</span></div><div class="sec">Intervenant(s)</div><ul><li>Justin MICHEL</li></ul></div></details>
+<details class="card" data-ref="S102" style="border-left-color:#a23b2e" data-th="Urgences" data-r="Salle Pessac-Léognan (F1+F2)" data-ty="Atelier" data-s="s102 complications per-operatoires en chirurgie endonasale: si ca m'arrive, je fais quoi ? salle pessac-leognan (f1+f2) urgences atelier chloe monnot " data-deb="11:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#a23b2e">Urgences</span><span class="badge">Atelier</span></span>
+<span class="ttl">Complications per-opératoires en chirurgie endonasale: si ça m'arrive, je fais quoi ?</span>
+<span class="meta">📍 Salle Pessac-Léognan (F1+F2)<br>👤 Chloé MONNOT</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:30 – 12:00</div><div class="drow">📍 Salle Pessac-Léognan (F1+F2) · <span style="color:var(--text2)">réf. S102</span></div><div class="sec">Intervenant(s)</div><ul><li>Chloé MONNOT</li></ul></div></details>
+<details class="card" data-ref="S93" style="border-left-color:#8a7d72" data-th="Divers" data-r="Salle Pomerol (D1+D2)" data-ty="Atelier" data-s="s93 secretions, croutes et crenotherapie salle pomerol (d1+d2) divers atelier emmanuelle mouchon " data-deb="11:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#8a7d72">Divers</span><span class="badge">Atelier</span></span>
+<span class="ttl">Sécrétions, croûtes et crénothérapie</span>
+<span class="meta">📍 Salle Pomerol (D1+D2)<br>👤 Emmanuelle MOUCHON</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:30 – 12:00</div><div class="drow">📍 Salle Pomerol (D1+D2) · <span style="color:var(--text2)">réf. S93</span></div><div class="sec">Intervenant(s)</div><ul><li>Emmanuelle MOUCHON</li></ul></div></details>
+<details class="card" data-ref="S119" style="border-left-color:#7b1e3b" data-th="Techniques chirurgicales" data-r="Salle Sauternes (E1+E2)" data-ty="Séance Vidéo Chirurgicale" data-s="s119 la dacryocystorhinostomie aux instruments froids salle sauternes (e1+e2) techniques chirurgicales seance video chirurgicale azeddine lachkar " data-deb="11:30" data-fin="12:00">
+<summary><span class="badges"><span class="badge theme" style="background:#7b1e3b">Techniques chirurgicales</span><span class="badge">Séance Vidéo Chirurgicale</span></span>
+<span class="ttl">La Dacryocystorhinostomie aux instruments froids</span>
+<span class="meta">📍 Salle Sauternes (E1+E2)<br>👤 Azeddine LACHKAR</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 11:30 – 12:00</div><div class="drow">📍 Salle Sauternes (E1+E2) · <span style="color:var(--text2)">réf. S119</span></div><div class="sec">Intervenant(s)</div><ul><li>Azeddine LACHKAR</li></ul></div></details>
+<div class="timehdr">12:00 – 13:00</div><details class="card" data-ref="S86" style="border-left-color:#581430" data-th="Séance extraordinaire" data-r="Amphi A Saint-Estèphe" data-ty="Divers" data-s="s86 les essentiels du congres - remise du prix de l'afr amphi a saint-estephe seance extraordinaire divers  " data-deb="12:00" data-fin="13:00">
+<summary><span class="badges"><span class="badge theme" style="background:#581430">Séance extraordinaire</span><span class="badge">Divers</span></span>
+<span class="ttl">Les essentiels du congrès - Remise du prix de l'AFR</span>
+<span class="meta">📍 Amphi A Saint-Estèphe</span></summary>
+<div class="detail"><div class="drow">🗓 Samedi 20 juin · 12:00 – 13:00</div><div class="drow">📍 Amphi A Saint-Estèphe · <span style="color:var(--text2)">réf. S86</span></div></div></details>
+</section>
+</main>
+<script>
+(function(){
+try{
+var DAYS=["2026-06-18","2026-06-19","2026-06-20"];
+var today=new Date().toISOString().slice(0,10);
+var ti=DAYS.indexOf(today);
+if(ti>=0)document.getElementById("day"+ti).checked=true;
+document.getElementById("sw").style.display="block";
+var cards=[].slice.call(document.querySelectorAll(".card"));
+var q="";
+function nrm(s){try{return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();}catch(e){return s.toLowerCase();}}
+function search(){
+  cards.forEach(function(c){
+    c.classList.toggle("jhide",!!q&&c.getAttribute("data-s").indexOf(q)===-1);
+  });
+}
+document.getElementById("q").addEventListener("input",function(e){q=nrm(e.target.value);search();});
+// badge "en cours"
+if(ti>=0){
+  var now=new Date(),mn=now.getHours()*60+now.getMinutes();
+  cards.forEach(function(c){
+    var sec=c.parentNode;while(sec&&(!sec.classList||!sec.classList.contains("day")))sec=sec.parentNode;
+    if(!sec||sec.getAttribute("data-date")!==today)return;
+    var p1=c.getAttribute("data-deb").split(":"),p2=c.getAttribute("data-fin").split(":");
+    if(mn>=(+p1[0]*60+ +p1[1])&&mn<(+p2[0]*60+ +p2[1]))c.classList.add("live");
+  });
+}
+// icône calendrier (fonctionne hors aperçu iOS)
+function icsEsc(s){return s.replace(/\\/g,"\\\\").replace(/\r?\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");}
+function fold(l){var o="";while(l.length>70){o+=l.slice(0,70)+"\r\n ";l=l.slice(70);}return o+l;}
+function addCal(c){
+  var sec=c.parentNode;while(sec&&(!sec.classList||!sec.classList.contains("day")))sec=sec.parentNode;
+  var date=sec.getAttribute("data-date").replace(/-/g,"");
+  var tm=function(t){var p=t.split(":");return("0"+p[0]).slice(-2)+("0"+p[1]).slice(-2)+"00";};
+  var title=c.querySelector(".ttl").textContent.trim();
+  var desc=[];
+  [].slice.call(c.querySelectorAll(".detail .sec,.detail ul li,.detail .talk,.detail .desc")).forEach(function(el){desc.push(el.textContent.replace(/\s+/g," ").trim());});
+  desc.push("Rhinoforum 2026 - Bordeaux");
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Rhinoforum2026//FR","BEGIN:VEVENT",
+    "UID:"+date+tm(c.getAttribute("data-deb"))+Math.floor(Math.random()*1e6)+"@rf26",
+    "DTSTAMP:20260611T000000Z",
+    "DTSTART:"+date+"T"+tm(c.getAttribute("data-deb")),
+    "DTEND:"+date+"T"+tm(c.getAttribute("data-fin")),
+    fold("SUMMARY:"+icsEsc(title)),
+    fold("LOCATION:"+icsEsc(c.getAttribute("data-r")+", Rhinoforum 2026, Bordeaux")),
+    fold("DESCRIPTION:"+icsEsc(desc.join("\n"))),
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:Rappel","TRIGGER:-PT15M","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  var fname="rhinoforum-"+date+"-"+tm(c.getAttribute("data-deb")).slice(0,4)+".ics";
+  if(navigator.share&&navigator.canShare&&window.File){
+    try{var f=new File([ics],fname,{type:"text/calendar"});
+      if(navigator.canShare({files:[f]})){navigator.share({files:[f],title:title}).catch(function(){});return;}
+    }catch(e){}
+  }
+  try{var blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");a.href=url;a.download=fname;document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(url);document.body.removeChild(a);},2000);}catch(e){}
+}
+cards.forEach(function(c){
+  var det=c.querySelector(".detail");
+  if(!det)return;
+  var b=document.createElement("button");
+  b.type="button";b.className="calbtn";b.textContent="📅 Ajouter au calendrier";
+  b.setAttribute("aria-label","Ajouter cette session au calendrier avec rappel 15 minutes avant");
+  b.addEventListener("click",function(ev){
+    ev.preventDefault();ev.stopPropagation();
+    var ref=c.getAttribute("data-ref");
+    if(ref&&location.protocol.indexOf("http")===0){
+      var base=location.host+location.pathname.replace(/[^\/]*$/,"");
+      location.href="webcal://"+base+"ics/"+ref+".ics";
+    }
+    else{addCal(c);}
+  });
+  det.appendChild(b);
+});
+// ----- favoris "Mes sessions" -----
+var favs;
+try{favs=new Set(JSON.parse(localStorage.getItem("rf26favs")||"[]"));}catch(e){favs=new Set();}
+var favtab=document.getElementById("favtab");
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+function saveFavs(){try{localStorage.setItem("rf26favs",JSON.stringify(Array.from(favs)));}catch(e){}}
+function updTab(){favtab.textContent="★ Mes sessions"+(favs.size?" ("+favs.size+")":"");}
+function updEmpty(){document.getElementById("favempty").style.display=(document.body.classList.contains("favmode")&&!favs.size)?"block":"none";}
+cards.forEach(function(c){
+  var ref=c.getAttribute("data-ref");if(!ref)return;
+  var b=document.createElement("button");
+  b.type="button";b.className="starbtn";b.setAttribute("aria-label","Ajouter à mes sessions");
+  var on=favs.has(ref);
+  b.textContent=on?"★":"☆";if(on){b.classList.add("on");c.classList.add("favsel");}
+  b.addEventListener("click",function(ev){
+    ev.preventDefault();ev.stopPropagation();
+    if(favs.has(ref)){favs.delete(ref);b.textContent="☆";b.classList.remove("on");c.classList.remove("favsel");}
+    else{favs.add(ref);b.textContent="★";b.classList.add("on");c.classList.add("favsel");}
+    saveFavs();updTab();updEmpty();
+  });
+  c.querySelector("summary").appendChild(b);
+});
+favtab.addEventListener("click",function(ev){
+  ev.preventDefault();
+  document.body.classList.add("favmode");
+  favtab.classList.add("active");
+  updEmpty();window.scrollTo(0,0);
+});
+[].slice.call(document.querySelectorAll(".days label")).forEach(function(l){
+  l.addEventListener("click",function(){
+    document.body.classList.remove("favmode");
+    favtab.classList.remove("active");
+    updEmpty();
+  });
+});
+updTab();
+window.addEventListener("pagehide",saveFavs);
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")saveFavs();});
+}catch(err){}
+})();
+</script>
+<script>
+(function(){
+var APP_VERSION="2026.06.12-4";
+function toast(msg,withBtn){
+  var t=document.createElement("div");t.id="updbar";
+  t.innerHTML=msg+(withBtn?' <button id="updbtn">Recharger</button>':'');
+  document.body.appendChild(t);
+  if(withBtn)document.getElementById("updbtn").addEventListener("click",function(){location.reload();});
+  else setTimeout(function(){t.classList.add("hide");setTimeout(function(){t.remove();},600);},4000);
+}
+try{
+  var prev=localStorage.getItem("rf26ver");
+  if(prev&&prev!==APP_VERSION)toast("✓ Application mise à jour — programme actualisé");
+  localStorage.setItem("rf26ver",APP_VERSION);
+}catch(e){}
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){
+    var hadController=!!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+    navigator.serviceWorker.addEventListener("controllerchange",function(){
+      if(hadController)toast("Nouvelle version disponible",true);
+    });
+  });
+}
+// Bandeau installation iPhone
+(function(){
+  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  var isStandalone=window.navigator.standalone===true;
+  var dismissed=localStorage.getItem("rf26install");
+  if(!isIOS||isStandalone||dismissed)return;
+  var b=document.createElement("div");
+  b.id="iosinstall";
+  b.innerHTML='<div id="iosinstall-inner">'
+    +'<button id="iosinstall-close" aria-label="Fermer">✕</button>'
+    +'<div style="font-size:22px;margin-bottom:6px;">📲</div>'
+    +'<strong>Installer l\'app sur votre iPhone</strong>'
+    +'<p style="margin:8px 0 4px">Appuyez sur <span style="display:inline-flex;align-items:center;gap:3px;background:#e8e8e8;border-radius:5px;padding:1px 6px;color:#333;font-size:13px;">⬆︎ Partager</span> en bas de Safari</p>'
+    +'<p style="margin:4px 0">puis choisissez <strong>« Sur l\'écran d\'accueil »</strong></p>'
+    +'</div>';
+  var style=document.createElement("style");
+  style.textContent='#iosinstall{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 12px 20px;animation:slideup .4s ease}'
+    +'#iosinstall-inner{background:#fff;color:#111;border-radius:16px;padding:18px 16px 16px;text-align:center;font-size:14px;line-height:1.5;box-shadow:0 -2px 20px rgba(0,0,0,.18);position:relative}'
+    +'#iosinstall-inner::after{content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border:10px solid transparent;border-top:10px solid #fff;}'
+    +'#iosinstall-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;color:#999;cursor:pointer;padding:4px}'
+    +'@keyframes slideup{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}';
+  document.head.appendChild(style);
+  document.body.appendChild(b);
+  document.getElementById("iosinstall-close").addEventListener("click",function(){
+    b.style.animation="none";b.style.opacity="0";b.style.transform="translateY(100%)";b.style.transition="all .3s";
+    setTimeout(function(){b.remove();},300);
+    try{localStorage.setItem("rf26install","1");}catch(e){}
+  });
+})();
+})();
+</script>
 </body>
 </html>
