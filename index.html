@@ -11,6 +11,16 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Rhinoforum 2026 — Programme</title>
 <style>
+/* Bandeau installation iOS */
+#ios-pwa-banner{position:fixed;bottom:20px;left:5%;right:5%;width:90%;background:#fff;color:#333;box-shadow:0 4px 20px rgba(0,0,0,.25);border-radius:12px;z-index:9999;padding:16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;border:1px solid #e5e5ea;}
+.ios-banner-hidden{display:none!important;}
+#ios-pwa-banner p{margin:0 0 10px;font-weight:700;font-size:15px;}
+#ios-pwa-banner ol{margin:0;padding-left:20px;font-size:14px;line-height:1.5;}
+#ios-pwa-banner li{margin-bottom:8px;}
+.icon-share{font-size:16px;color:#007aff;}
+#close-ios-banner{background:none;border:none;color:#ff3b30;font-weight:600;float:right;margin-top:5px;cursor:pointer;font-size:14px;}
+/* Thème sombre */
+@media(prefers-color-scheme:dark){#ios-pwa-banner{background:#1c1c1e;color:#f2f2f7;border-color:#3a3a3c;}#ios-pwa-banner p{color:#f2f2f7;}}
 :root{--bg:#f6f1ee;--card:#fffdfb;--text:#2a1a1f;--text2:#7d6a70;--accent:#7b1e3b;--accent2:#a8324f;--gold:#c9a227;--line:#e8ded8;--chipbg:#efe6e1;}
 @media (prefers-color-scheme:dark){:root{--bg:#140a0e;--card:#221318;--text:#f5edf0;--text2:#b39aa4;--line:#3a2630;--chipbg:#33222a;}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -998,48 +1008,32 @@ if("serviceWorker" in navigator){
   });
 }
 // Bandeau installation iPhone
-window.addEventListener("load",function(){
+document.addEventListener("DOMContentLoaded",function(){
   setTimeout(function(){
     try{
-      var isIOS=/iphone|ipod/i.test(navigator.userAgent)||
-        (/ipad/i.test(navigator.userAgent))||
-        (navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-      var isStandalone=window.navigator.standalone===true;
-      var dismissed=localStorage.getItem("rf26install");
-      if(!isIOS||isStandalone||dismissed)return;
-      var style=document.createElement("style");
-      style.textContent=
-        '#iosinstall{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 12px 24px;}'
-        +'#iosinstall-inner{background:#fff;color:#111;border-radius:18px;padding:20px 16px 16px;text-align:center;font-size:14px;line-height:1.55;box-shadow:0 -4px 30px rgba(0,0,0,.22);position:relative;transform:translateY(120%);transition:transform .4s cubic-bezier(.25,.8,.25,1);}'
-        +'#iosinstall-inner.show{transform:translateY(0);}'
-        +'#iosinstall-inner::after{content:"▼";position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);color:#fff;font-size:12px;}'
-        +'#iosinstall-close{position:absolute;top:10px;right:14px;background:#eee;border:none;border-radius:50%;width:24px;height:24px;font-size:14px;line-height:24px;text-align:center;color:#666;cursor:pointer;padding:0;}';
-      document.head.appendChild(style);
-      var b=document.createElement("div");
-      b.id="iosinstall";
-      b.innerHTML='<div id="iosinstall-inner">'
-        +'<button id="iosinstall-close" aria-label="Fermer">✕</button>'
-        +'<div style="font-size:26px;margin-bottom:8px;">📲</div>'
-        +'<div style="font-size:16px;font-weight:700;margin-bottom:8px;">Installer l\'app Rhinoforum</div>'
-        +'<div>Appuyez sur <span style="display:inline-flex;align-items:center;gap:2px;background:#f0f0f0;border:1px solid #ccc;border-radius:6px;padding:2px 8px;font-size:13px;">⬆️ Partager</span></div>'
-        +'<div style="margin-top:6px;">puis <strong>« Sur l\'écran d\'accueil »</strong></div>'
-        +'</div>';
-      document.body.appendChild(b);
-      requestAnimationFrame(function(){
-        requestAnimationFrame(function(){
-          document.getElementById("iosinstall-inner").classList.add("show");
-        });
-      });
-      document.getElementById("iosinstall-close").addEventListener("click",function(){
-        var inner=document.getElementById("iosinstall-inner");
-        inner.style.transform="translateY(120%)";
-        setTimeout(function(){b.remove();},400);
-        try{localStorage.setItem("rf26install","1");}catch(e){}
+      var banner=document.getElementById("ios-pwa-banner");
+      if(!banner)return;
+      var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+      var isStandalone=("standalone" in window.navigator)&&window.navigator.standalone;
+      if(isIOS&&!isStandalone&&!sessionStorage.getItem("ios-banner-dismissed")){
+        banner.classList.remove("ios-banner-hidden");
+      }
+      document.getElementById("close-ios-banner").addEventListener("click",function(){
+        banner.classList.add("ios-banner-hidden");
+        sessionStorage.setItem("ios-banner-dismissed","true");
       });
     }catch(e){}
-  },2000);
+  },1500);
 });
 })();
 </script>
+<div id="ios-pwa-banner" class="ios-banner-hidden">
+  <button id="close-ios-banner">Fermer</button>
+  <p>Installer l'agenda sur votre iPhone :</p>
+  <ol>
+    <li>Appuyez sur <strong>Partager</strong> <span class="icon-share">⬆</span> en bas de Safari</li>
+    <li>Choisissez <strong>« Sur l'écran d'accueil »</strong> ＋</li>
+  </ol>
+</div>
 </body>
 </html>
