@@ -998,34 +998,47 @@ if("serviceWorker" in navigator){
   });
 }
 // Bandeau installation iPhone
-(function(){
-  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  var isStandalone=window.navigator.standalone===true;
-  var dismissed=localStorage.getItem("rf26install");
-  if(!isIOS||isStandalone||dismissed)return;
-  var b=document.createElement("div");
-  b.id="iosinstall";
-  b.innerHTML='<div id="iosinstall-inner">'
-    +'<button id="iosinstall-close" aria-label="Fermer">✕</button>'
-    +'<div style="font-size:22px;margin-bottom:6px;">📲</div>'
-    +'<strong>Installer l\'app sur votre iPhone</strong>'
-    +'<p style="margin:8px 0 4px">Appuyez sur <span style="display:inline-flex;align-items:center;gap:3px;background:#e8e8e8;border-radius:5px;padding:1px 6px;color:#333;font-size:13px;">⬆︎ Partager</span> en bas de Safari</p>'
-    +'<p style="margin:4px 0">puis choisissez <strong>« Sur l\'écran d\'accueil »</strong></p>'
-    +'</div>';
-  var style=document.createElement("style");
-  style.textContent='#iosinstall{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 12px 20px;animation:slideup .4s ease}'
-    +'#iosinstall-inner{background:#fff;color:#111;border-radius:16px;padding:18px 16px 16px;text-align:center;font-size:14px;line-height:1.5;box-shadow:0 -2px 20px rgba(0,0,0,.18);position:relative}'
-    +'#iosinstall-inner::after{content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border:10px solid transparent;border-top:10px solid #fff;}'
-    +'#iosinstall-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;color:#999;cursor:pointer;padding:4px}'
-    +'@keyframes slideup{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}';
-  document.head.appendChild(style);
-  document.body.appendChild(b);
-  document.getElementById("iosinstall-close").addEventListener("click",function(){
-    b.style.animation="none";b.style.opacity="0";b.style.transform="translateY(100%)";b.style.transition="all .3s";
-    setTimeout(function(){b.remove();},300);
-    try{localStorage.setItem("rf26install","1");}catch(e){}
-  });
-})();
+window.addEventListener("load",function(){
+  setTimeout(function(){
+    try{
+      var isIOS=/iphone|ipod/i.test(navigator.userAgent)||
+        (/ipad/i.test(navigator.userAgent))||
+        (navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+      var isStandalone=window.navigator.standalone===true;
+      var dismissed=localStorage.getItem("rf26install");
+      if(!isIOS||isStandalone||dismissed)return;
+      var style=document.createElement("style");
+      style.textContent=
+        '#iosinstall{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 12px 24px;}'
+        +'#iosinstall-inner{background:#fff;color:#111;border-radius:18px;padding:20px 16px 16px;text-align:center;font-size:14px;line-height:1.55;box-shadow:0 -4px 30px rgba(0,0,0,.22);position:relative;transform:translateY(120%);transition:transform .4s cubic-bezier(.25,.8,.25,1);}'
+        +'#iosinstall-inner.show{transform:translateY(0);}'
+        +'#iosinstall-inner::after{content:"▼";position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);color:#fff;font-size:12px;}'
+        +'#iosinstall-close{position:absolute;top:10px;right:14px;background:#eee;border:none;border-radius:50%;width:24px;height:24px;font-size:14px;line-height:24px;text-align:center;color:#666;cursor:pointer;padding:0;}';
+      document.head.appendChild(style);
+      var b=document.createElement("div");
+      b.id="iosinstall";
+      b.innerHTML='<div id="iosinstall-inner">'
+        +'<button id="iosinstall-close" aria-label="Fermer">✕</button>'
+        +'<div style="font-size:26px;margin-bottom:8px;">📲</div>'
+        +'<div style="font-size:16px;font-weight:700;margin-bottom:8px;">Installer l\'app Rhinoforum</div>'
+        +'<div>Appuyez sur <span style="display:inline-flex;align-items:center;gap:2px;background:#f0f0f0;border:1px solid #ccc;border-radius:6px;padding:2px 8px;font-size:13px;">⬆️ Partager</span></div>'
+        +'<div style="margin-top:6px;">puis <strong>« Sur l\'écran d\'accueil »</strong></div>'
+        +'</div>';
+      document.body.appendChild(b);
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          document.getElementById("iosinstall-inner").classList.add("show");
+        });
+      });
+      document.getElementById("iosinstall-close").addEventListener("click",function(){
+        var inner=document.getElementById("iosinstall-inner");
+        inner.style.transform="translateY(120%)";
+        setTimeout(function(){b.remove();},400);
+        try{localStorage.setItem("rf26install","1");}catch(e){}
+      });
+    }catch(e){}
+  },2000);
+});
 })();
 </script>
 </body>
