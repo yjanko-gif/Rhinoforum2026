@@ -11,6 +11,11 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Rhinoforum 2026 — Programme</title>
 <style>
+/* Chevauchement horaire */
+.card.overlap-warn{outline:2px solid #e05000;outline-offset:-2px;}
+.card.overlap-warn .starbtn{color:#e05000!important;}
+#favoverlap{margin:8px 12px 4px;background:#fff3e0;border:1px solid #e05000;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#c04000;}
+@media(prefers-color-scheme:dark){#favoverlap{background:#3a1a00;border-color:#c04000;color:#ff9044;}}
 /* Bandeau installation iOS */
 #ios-pwa-banner{position:fixed;bottom:20px;left:5%;right:5%;width:90%;background:#fff;color:#333;box-shadow:0 4px 20px rgba(0,0,0,.25);border-radius:12px;z-index:9999;padding:16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;border:1px solid #e5e5ea;}
 .ios-banner-hidden{display:none!important;}
@@ -948,7 +953,42 @@ try{favs=new Set(JSON.parse(localStorage.getItem("rf26favs")||"[]"));}catch(e){f
 var favtab=document.getElementById("favtab");
 try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
 function saveFavs(){try{localStorage.setItem("rf26favs",JSON.stringify(Array.from(favs)));}catch(e){}}
-function updTab(){favtab.textContent="★ Mes sessions"+(favs.size?" ("+favs.size+")":"");}
+function toMin(t){var p=(t||"").split(":");return parseInt(p[0]||0)*60+parseInt(p[1]||0);}
+function getOverlaps(){
+  var sel=Array.from(document.querySelectorAll(".card.favsel"));
+  var infos=sel.map(function(c){
+    var day=c.closest("section.day");
+    return{el:c,ref:c.getAttribute("data-ref"),date:day?day.getAttribute("data-date"):"",deb:toMin(c.getAttribute("data-deb")),fin:toMin(c.getAttribute("data-fin"))};
+  });
+  var conflicting=new Set();
+  for(var i=0;i<infos.length;i++)for(var j=i+1;j<infos.length;j++){
+    var a=infos[i],b=infos[j];
+    if(a.date&&a.date===b.date&&a.deb<b.fin&&b.deb<a.fin){conflicting.add(a.ref);conflicting.add(b.ref);}
+  }
+  return conflicting;
+}
+function updOverlapWarnings(){
+  // Retirer anciens marqueurs
+  document.querySelectorAll(".card.overlap-warn").forEach(function(c){c.classList.remove("overlap-warn");});
+  var ow=document.getElementById("favoverlap");if(ow)ow.remove();
+  var conflicts=getOverlaps();
+  if(!conflicts.size)return;
+  // Marquer les cartes en conflit
+  conflicts.forEach(function(ref){
+    var c=document.querySelector('.card[data-ref="'+ref+'"]');
+    if(c)c.classList.add("overlap-warn");
+  });
+  // Bandeau d'avertissement dans "Mes sessions"
+  if(document.body.classList.contains("favmode")){
+    var warn=document.createElement("div");warn.id="favoverlap";
+    warn.innerHTML="⚠️ "+conflicts.size/2+" chevauchement"+(conflicts.size>2?"s":"")+" d'horaire dans vos sessions";
+    var main=document.querySelector("main");if(main)main.insertBefore(warn,main.firstChild);
+  }
+}
+function updTab(){
+  var conflicts=getOverlaps();
+  favtab.textContent="★ Mes sessions"+(favs.size?" ("+favs.size+")":"")+(conflicts.size?" ⚠️":"");
+}
 function updEmpty(){document.getElementById("favempty").style.display=(document.body.classList.contains("favmode")&&!favs.size)?"block":"none";}
 cards.forEach(function(c){
   var ref=c.getAttribute("data-ref");if(!ref)return;
@@ -960,7 +1000,7 @@ cards.forEach(function(c){
     ev.preventDefault();ev.stopPropagation();
     if(favs.has(ref)){favs.delete(ref);b.textContent="☆";b.classList.remove("on");c.classList.remove("favsel");}
     else{favs.add(ref);b.textContent="★";b.classList.add("on");c.classList.add("favsel");}
-    saveFavs();updTab();updEmpty();
+    saveFavs();updTab();updEmpty();updOverlapWarnings();
   });
   c.appendChild(b);
 });
@@ -968,7 +1008,7 @@ favtab.addEventListener("click",function(ev){
   ev.preventDefault();
   document.body.classList.add("favmode");
   favtab.classList.add("active");
-  updEmpty();window.scrollTo(0,0);
+  updEmpty();updOverlapWarnings();window.scrollTo(0,0);
 });
 [].slice.call(document.querySelectorAll(".days label")).forEach(function(l){
   l.addEventListener("click",function(){
